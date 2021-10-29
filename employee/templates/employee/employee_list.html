@@ -1,0 +1,31 @@
+{% extends 'employee/base.html' %}
+
+{% block content %}
+<div class="m-3">
+    <div class="card">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Nombres</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">CI</th>
+                    <th scope="col">Departamento</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for employee in employees %}
+                <tr>
+                    <td>{{employee.name}}</td>
+                    <td>{{employee.lastname}}</td>
+                    <td>{{employee.identification}}</td>
+                    <td>{{employee.department}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
