@@ -40,7 +40,3 @@ class Holidays(models.Model):
 
     def __str__(self):
         return f'{self.date_start} - {self.date_end} - {self.days}'
-
-
-
-

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView
 
-from employee.models import Employee, Reason, Requirements
+from employee.models import Employee, Reason, Requirements, Holidays
 
 
 class EmployeeGenericView(ListView):
@@ -22,4 +22,8 @@ class ReasonGenericView(ListView):
 class RequirementsGenericView(ListView):
     model = Requirements
     context_object_name = 'requirements'
+
+class HolidaysGenericView(ListView):
+    model = Holidays
+    context_object_name = 'holidays'
 
