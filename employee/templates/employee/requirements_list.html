@@ -1,0 +1,33 @@
+{% extends 'employee/base.html' %}
+
+{% block content %}
+<div class="m-3">
+    <div class="card">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Codigo</th>
+                    <th scope="col">Requisito de Fecha</th>
+                    <th scope="col">Fecha de Inicio</th>
+                    <th scope="col">Fecha de Fin</th>
+                    <th scope="col">Descuento de Horas</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for requirements in requirements %}
+                <tr>
+                    <td>{{requirements.code}}</td>
+                    <td>{{requirements.date_requirement}}</td>
+                    <td>{{requirements.date_start}}</td>
+                    <td>{{requirements.date_end}}</td>
+                    <td>{{requirements.hours_discount}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
