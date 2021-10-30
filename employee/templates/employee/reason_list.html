@@ -1,0 +1,27 @@
+{% extends 'employee/base.html' %}
+
+{% block content %}
+<div class="m-3">
+    <div class="card">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Estado</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for reason in reasons %}
+                <tr>
+                    <td>{{reason.description}}</td>
+                    <td>{{reason.state}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
