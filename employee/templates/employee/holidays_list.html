@@ -1,0 +1,28 @@
+{% extends 'employee/base.html' %}
+
+{% block content %}
+<div class="m-3">
+    <div class="card">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Fecha de Inicio</th>
+                    <th scope="col">Fecha de Fin</th>
+                    <th scope="col">Dias</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for holiday in holidays %}
+                <tr>
+                    <td>{{holiday.date_start}</td>
+                    <td>{{holiday.date_end}</td>
+                    <td>{{holiday.days}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
