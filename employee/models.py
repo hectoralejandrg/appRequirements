@@ -17,8 +17,8 @@ class Employee(models.Model):
 class Requirements(models.Model):
     code = models.CharField(max_length=15)
     date_requirement = models.DateField()
-    date_start = models.DateTimeField()
-    date_end = models.DateTimeField()
+    date_start = models.DateField()
+    date_end = models.DateField()
     hours_discount = models.IntegerField()
 
     def __str__(self):
