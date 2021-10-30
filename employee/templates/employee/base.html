@@ -22,9 +22,9 @@
         <a class="navbar-brand" href="#">CRUD</a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link" href="#">Escuela</a>
-                <a class="nav-link" href="#">Clases</a>
-                <a class="nav-link" href="#">Estudiantes</a>
+                <a class="nav-link" href="{% url 'employee:list_employee' %}">Empleados</a>
+                <a class="nav-link" href="{% url 'employee:list_requirements' %}">Requerimientos</a>
+                <a class="nav-link" href="{% url 'employee:list_reason' %}">Razones</a>
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
 
 from employee.models import Employee, Reason, Requirements
 
@@ -7,6 +7,12 @@ from employee.models import Employee, Reason, Requirements
 class EmployeeGenericView(ListView):
     model = Employee
     context_object_name = 'employees'
+
+
+class EmployeeCreateView(CreateView):
+    model = Employee
+    fields = '__all__'
+    success_url= '/employee/'
 
 
 class ReasonGenericView(ListView):
