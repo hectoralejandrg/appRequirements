@@ -17,12 +17,12 @@ class Employee(models.Model):
 class Requirements(models.Model):
     code = models.CharField(max_length=15)
     date_requirement = models.DateField()
-    date_start = models.DateTimeField()
-    date_end = models.DateTimeField()
+    date_start = models.DateField()
+    date_end = models.DateField()
     hours_discount = models.IntegerField()
 
     def __str__(self):
-        return f'{self.code} - {self.date_requirement} - {self.date_star} - {self.date_end} - {self.hours_discount}'
+        return f'{self.code}- {self.date_requirement} - {self.date_start} - {self.date_end} - {self.hours_discount}'
 
 class Reason(models.Model):
     description = models.CharField(max_length=100)
@@ -39,8 +39,4 @@ class Holidays(models.Model):
     days = models.DateField()
 
     def __str__(self):
-        return f'{self.date_star} - {self.date_end} - {self.days}'
-
-
-
-
+        return f'{self.date_start} - {self.date_end} - {self.days}'

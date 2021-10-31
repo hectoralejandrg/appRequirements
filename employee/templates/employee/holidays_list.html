@@ -3,28 +3,26 @@
 {% block content %}
 <div class="m-3">
     <div class="card">
-        <div class="card-header">
-            <a href="{% url 'employee:new_reason' %}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Agregar Motivos</a>
-        </div>
         <div class="card-body">
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col">Descripcion</th>
-                    <th scope="col">Estado</th>
+                    <th scope="col">Fecha de Inicio</th>
+                    <th scope="col">Fecha de Fin</th>
+                    <th scope="col">Dias</th>
                 </tr>
                 </thead>
                 <tbody>
-                {% for reason in reasons %}
+                {% for holiday in holidays %}
                 <tr>
-                    <td>{{reason.description}}</td>
-                    <td>{{reason.state}}</td>
+                    <td>{{holiday.date_start}</td>
+                    <td>{{holiday.date_end}</td>
+                    <td>{{holiday.days}</td>
                 </tr>
                 {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
-
 </div>
 {% endblock %}
