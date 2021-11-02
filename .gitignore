@@ -1,6 +1,13 @@
 /.idea
+/db.sqlite3
+/employee/__pycache__
 /venv
+<<<<<<< HEAD
 /employee/__pycache__
 /employee/migrations/__pycache__
 /app/__pycache__
 db.sqlite3
+=======
+/app/__pycache__
+/employee/migrations/__pycache__
+>>>>>>> 6aff8d21020dba141738bd205ba49e4ee716f220
