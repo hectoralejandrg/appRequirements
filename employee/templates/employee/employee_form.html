@@ -3,7 +3,18 @@
 {% block content %}
 <div class="mt-3">
     <form method="post"> {% csrf_token %}
-        {{ form.as_p }}
+        {% for field in form.visible_fields %}
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">{{field.label}}</label>
+            {% if field.field.required %}<span class="text-danger">*</span>{% endif %}</label>
+            {{field}}
+        </div>
+        {% if field.errors %}
+        <span class="invalid-feedback">{{ field.errors.as_text }}</span>
+        {% endif %}
+
+        {% endfor %}
+
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
 </div>

@@ -1,3 +1,6 @@
 /.idea
 /venv
+/employee/__pycache__
+/employee/migrations/__pycache__
+/app/__pycache__
 db.sqlite3

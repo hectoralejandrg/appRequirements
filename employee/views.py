@@ -1,5 +1,5 @@
-from django.shortcuts import render
 from django.views.generic import ListView, CreateView
+from employee.forms import EmployeeForm
 
 from employee.models import Employee, Reason, Requirements, Holidays
 
@@ -11,7 +11,7 @@ class EmployeeGenericView(ListView):
 
 class EmployeeCreateView(CreateView):
     model = Employee
-    fields = '__all__'
+    form_class = EmployeeForm
     success_url= '/employee/'
 
 
