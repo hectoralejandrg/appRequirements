@@ -1,0 +1,13 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">CRUD</a>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" href="{% url 'employee:list_employee' %}">Empleados</a>
+                <a class="nav-link" href="{% url 'employee:list_requirements' %}">Requerimientos</a>
+                <a class="nav-link" href="{% url 'employee:list_reason' %}">Razones</a>
+                <a class="nav-link" href="{% url 'employee:list_holidays' %}">Vacaciones</a>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,4 +1,8 @@
-{% extends 'employee/base.html' %}
+{% extends 'base.html' %}
+
+{% block nav %}
+    {% include 'header.html' %}
+{% endblock %}
 
 {% block content %}
 <div class="m-3">
@@ -14,6 +18,7 @@
                     <th scope="col">Apellidos</th>
                     <th scope="col">CI</th>
                     <th scope="col">Departamento</th>
+                    <th scope="col">Accion</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -23,6 +28,11 @@
                     <td>{{employee.lastname}}</td>
                     <td>{{employee.identification}}</td>
                     <td>{{employee.department}}</td>
+                    <td class="text-center">
+                        <a href="{% url 'employee:update_employee' employee.id %}">
+                            <i class="fa fa-list-alt" aria-hidden="true"></i>
+                        </a>
+                    </td>
                 </tr>
                 {% endfor %}
                 </tbody>

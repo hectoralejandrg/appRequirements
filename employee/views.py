@@ -1,8 +1,14 @@
-from django.views.generic import ListView, CreateView
-from employee.forms import EmployeeForm
-
+from django.views.generic import ListView, CreateView,DetailView,DeleteView
+from django.views.generic.edit import UpdateView
+from employee.forms import EmployeeForm, RequirementForm
+from django.contrib.auth.views import LoginView
 from employee.models import Employee, Reason, Requirements, Holidays
 
+#Login
+class Login(LoginView):
+    template_name= 'login/login_form.html'
+
+#Employe CRUD
 class EmployeeGenericView(ListView):
     model = Employee
     context_object_name = 'employees'
@@ -14,6 +20,22 @@ class EmployeeCreateView(CreateView):
     success_url= '/employee/'
 
 
+class EmployeeUpdateView(UpdateView):
+    model = Employee
+    form_class = EmployeeForm
+    sucess_url = '/employee/'
+
+
+class EmployeeDetailView(DetailView):
+    queryset = Employee.objects.all()
+
+
+class EmployeeDeleteView(DeleteView):
+    model = Employee
+    success_url = '/employee/'
+
+
+#Requirements CRUD
 class RequirementsGenericView(ListView):
     model = Requirements
     context_object_name = 'requirements'
@@ -21,15 +43,16 @@ class RequirementsGenericView(ListView):
 
 class RequirementsCreateView(CreateView):
     model = Requirements
-    fields = '__all__'
+    form_class = RequirementForm
     success_url= '/requirements/'
 
 
+#Reason CRUD
 class ReasonGenericView(ListView):
     model = Reason
     context_object_name = 'reasons'
 
-
+#Holidays CRUD
 class HolidaysGenericView(ListView):
     model = Holidays
     context_object_name = 'holidays'

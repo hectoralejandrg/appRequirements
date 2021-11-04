@@ -17,8 +17,8 @@ class Employee(models.Model):
 class Requirements(models.Model):
     code = models.CharField(max_length=15)
     date_requirement = models.DateField()
-    date_start = models.DateField()
-    date_end = models.DateField()
+    date_start = models.DateTimeField()
+    date_end = models.DateTimeField()
     hours_discount = models.IntegerField()
     employee = models.ForeignKey(
         Employee,
@@ -26,7 +26,9 @@ class Requirements(models.Model):
         on_delete=models.SET_NULL,
         null=True
     )
-
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    
     def __str__(self):
         return f'{self.code}- {self.date_requirement} - {self.date_start} - {self.date_end} - {self.hours_discount}'
 
