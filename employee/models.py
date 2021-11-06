@@ -7,8 +7,8 @@ class Employee(models.Model):
     lastname = models.CharField(max_length=60)
     job = models.CharField(max_length=60)
     department = models.CharField(max_length=60)
-    created = models.DateField()
-    updated = models.DateField()
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
     state = models.BooleanField(default=True)
 
     def __str__(self):
@@ -20,7 +20,15 @@ class Requirements(models.Model):
     date_start = models.DateField()
     date_end = models.DateField()
     hours_discount = models.IntegerField()
-
+    employee = models.ForeignKey(
+        Employee,
+        related_name='employee',
+        on_delete=models.SET_NULL,
+        null=True
+    )
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    
     def __str__(self):
         return f'{self.code}- {self.date_requirement} - {self.date_start} - {self.date_end} - {self.hours_discount}'
 
