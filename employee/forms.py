@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.forms import fields
-from employee.models import Employee, Requirements
+from employee.models import Employee, Reason, Requirements
 
 class LoginForm(forms.ModelForm):
     class Meta:
@@ -46,4 +46,17 @@ class RequirementForm(forms.ModelForm):
     hours_discount = forms.CharField(
         label='Horas de permiso', widget=forms.TextInput(attrs={'type': 'number', 'class':'form-control'}))
     employee = forms.ModelChoiceField(label='Empleado', empty_label='Seleccione', queryset=Employee.objects.all(), widget=forms.Select(attrs={'class':'form-select'}))
+
+class ReasonForm(forms.ModelForm):
+
+    class Meta:
+        model = Reason
+        fields = ('__all__')
+    
+    description = forms.CharField(
+        label='Descripcion', widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+
+    ##Reason = forms.ModelChoiceField(label='Reason', empty_label='Seleccione', queryset=Reason.objects.all(), widget=forms.Select(attrs={'class':'form-select'}))
+
 

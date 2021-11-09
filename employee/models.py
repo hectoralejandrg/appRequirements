@@ -34,12 +34,12 @@ class Requirements(models.Model):
 
 class Reason(models.Model):
     description = models.CharField(max_length=100)
-    created = models.DateField()
-    updated = models.DateField()
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
     state = models.BooleanField(default=True)
 
     def __str__(self):
-        return f'{self.description} - {self.created} - {self.updated}'
+        return f'{self.description}'
 
 class Holidays(models.Model):
     date_start = models.DateField()

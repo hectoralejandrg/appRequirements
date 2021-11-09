@@ -1,6 +1,6 @@
 from django.views.generic import ListView, CreateView,DetailView,DeleteView
 from django.views.generic.edit import UpdateView
-from employee.forms import EmployeeForm, RequirementForm
+from employee.forms import EmployeeForm, RequirementForm, ReasonForm
 from django.contrib.auth.views import LoginView
 from employee.models import Employee, Reason, Requirements, Holidays
 
@@ -51,6 +51,25 @@ class RequirementsCreateView(CreateView):
 class ReasonGenericView(ListView):
     model = Reason
     context_object_name = 'reasons'
+
+class ReasonCreateView(CreateView):
+    model = Reason
+    form_class = ReasonForm
+    success_url= '/reason/'
+
+class ReasonUpdateView(UpdateView):
+    model = Reason
+    form_class = ReasonForm
+    sucess_url = '/reason/'
+
+
+class ReasonDetailView(DetailView):
+    queryset = Reason.objects.all()
+
+
+class ReasonDeleteView(DeleteView):
+    model = Reason
+    success_url = '/reason/'
 
 #Holidays CRUD
 class HolidaysGenericView(ListView):
