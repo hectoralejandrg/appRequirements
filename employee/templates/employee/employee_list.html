@@ -1,40 +1,51 @@
 {% extends 'base.html' %}
 
 {% block nav %}
-    {% include 'header.html' %}
+{% include 'header.html' %}
 {% endblock %}
 
 {% block content %}
 <div class="m-3">
     <div class="card">
         <div class="card-header">
-            <a href="{% url 'employee:new_employee' %}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Agregar Empleado</a>
+            <a href="{% url 'employee:new_employee' %}" class="btn btn-primary"><i class="fa fa-plus-circle"></i>
+                Agregar Empleado</a>
         </div>
         <div class="card-body">
             <table class="table">
                 <thead>
-                <tr>
-                    <th scope="col">Nombres</th>
-                    <th scope="col">Apellidos</th>
-                    <th scope="col">CI</th>
-                    <th scope="col">Departamento</th>
-                    <th scope="col">Accion</th>
-                </tr>
+                    <tr>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">CI</th>
+                        <th scope="col">Departamento</th>
+                        <th scope="col" class="text-center">Accion</th>
+                    </tr>
                 </thead>
                 <tbody>
-                {% for employee in employees %}
-                <tr>
-                    <td>{{employee.name}}</td>
-                    <td>{{employee.lastname}}</td>
-                    <td>{{employee.identification}}</td>
-                    <td>{{employee.department}}</td>
-                    <td class="text-center">
-                        <a href="{% url 'employee:update_employee' employee.id %}">
-                            <i class="fa fa-list-alt" aria-hidden="true"></i>
-                        </a>
-                    </td>
-                </tr>
-                {% endfor %}
+                    {% for employee in employees %}
+                    <tr>
+                        <td>{{employee.name}}</td>
+                        <td>{{employee.lastname}}</td>
+                        <td>{{employee.identification}}</td>
+                        <td>{{employee.department}}</td>
+                        <td class="d-flex justify-content-center">
+                            <div class="mr-1">
+                                <a class="btn btn-primary" href="{% url 'employee:update_employee' employee.id %}">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <form action="{% url 'employee:delete_employee' employee.id %}" method="post">
+                                    {% csrf_token %}
+                                    <button class="btn btn-danger" type="submit">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
