@@ -36,10 +36,8 @@
                                 </a>
                             </div>
                             <div>
-                                <button type="button" id="showModal" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-employee="{{employee.id}}" data-bs-target="#myModal">
-                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                </button>
+                                <a class="btn btn-danger" href="{% url 'employee:detail_employee' employee.id %}"><i
+                                        class="fa fa-trash-o" aria-hidden="true"></i></a>
                             </div>
                         </td>
                     </tr>
@@ -50,37 +48,4 @@
     </div>
 
 </div>
-{% endblock %}
-
-
-{% block modal%}
-<div class="modal" id="myModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Eliminar registro</h5>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close"><i
-                        class="fa fa-close" aria-hidden="true"></i></button>
-            </div>
-            <div class="modal-body">
-                <p>Esta seguro que desea elimonar este registro?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="print()">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-{% endblock %}
-
-{% block js %}
-<script>
-    const print = () => {
-        const button = document.getElementById('showModal')
-        console.log(myModal)
-        console.log(button)
-    }
-
-</script>
 {% endblock %}

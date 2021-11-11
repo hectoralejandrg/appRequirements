@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<ul class="list-group m-3">
+    <li class="list-group-item">{{object.name}}</li>
+    <li class="list-group-item">{{object.lastname}}</li>
+    <form method="post" action="{% url 'employee:delete_employee' object.id %}">
+        {% csrf_token %}
+        <li class="list-group-item">
+            <button class="btn btn-danger" type="submit">Eliminar</button>
+            <a href="{% url 'employee:list_employee' %}" class="btn btn-info">Regresar</a>
+        </li>
+    </form>
+
+</ul>
+{% endblock %}

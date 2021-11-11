@@ -1,4 +1,5 @@
-from django.views.generic import ListView, CreateView
+from django.db import models
+from django.views.generic import ListView, CreateView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView
 from employee.forms import EmployeeForm, LoginForm, RequirementForm
 from django.contrib.auth.views import LoginView
@@ -24,16 +25,17 @@ class EmployeeUpdateView(UpdateView):
     form_class = EmployeeForm
     sucess_url = '/employee/'
 
+class EmployeeDetailView(DetailView):
+    queryset = Employee.objects.all()
+
 class EmployeeDeleteView(DeleteView):
     model = Employee
     success_url = '/employee/'
-
 
 #Requirements CRUD
 class RequirementsGenericView(ListView):
     model = Requirements
     context_object_name = 'requirements'
-
 
 class RequirementsCreateView(CreateView):
     model = Requirements
