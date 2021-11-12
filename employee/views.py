@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 from django.views.generic import ListView, CreateView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView
-from employee.forms import EmployeeForm, LoginForm, RequirementForm
-=======
-from django.views.generic import ListView, CreateView,DetailView,DeleteView
-from django.views.generic.edit import UpdateView
-from employee.forms import EmployeeForm, RequirementForm, ReasonForm
->>>>>>> 2d03af0e36c756203519fa58800b94b471e36195
+from employee.forms import EmployeeForm, LoginForm, RequirementForm, ReasonForm
 from django.contrib.auth.views import LoginView
 from employee.models import Employee, Reason, Requirements, Holidays
 
