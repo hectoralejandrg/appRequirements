@@ -1,5 +1,5 @@
 from django.urls import path
-from employee.views import EmployeeDeleteView, EmployeeDetailView, EmployeeGenericView, EmployeeUpdateView, Login, ReasonGenericView, RequirementsGenericView,HolidaysGenericView, EmployeeCreateView, RequirementsCreateView
+from employee.views import EmployeeDeleteView, EmployeeDetailView, EmployeeGenericView, EmployeeUpdateView, Login, ReasonGenericView, RequirementsGenericView,HolidaysGenericView, EmployeeCreateView, RequirementsCreateView, ReasonCreateView, ReasonUpdateView, ReasonDeleteView
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 
@@ -20,6 +20,9 @@ urlpatterns =[
     path('requirements/new', RequirementsCreateView.as_view(), name="new_requirements"),
     #Reasons
     path('reason/', ReasonGenericView.as_view(), name="list_reason"),
+    path('reason/new', ReasonCreateView.as_view(), name="new_reason"),
+    path('reason/<pk>/update', ReasonUpdateView.as_view(), name='update_reason'),
+    path('reason/<pk>/delete', ReasonDeleteView.as_view(), name='delete_reason'),
     #Holidays
     path('holidays/', HolidaysGenericView.as_view(), name="list_holidays"),
 ]

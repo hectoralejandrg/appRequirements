@@ -1,23 +1,36 @@
 {% extends 'base.html' %}
 
+{% block nav %}
+{% include 'header.html' %}
+{% endblock %}
+
 {% block content %}
 <div class="m-3">
     <div class="card">
+        <div class="card-header">
+            <a href="{% url 'employee:new_reason' %}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Agregar
+                Motivos</a>
+        </div>
         <div class="card-body">
             <table class="table">
                 <thead>
-                <tr>
-                    <th scope="col">Descripcion</th>
-                    <th scope="col">Estado</th>
-                </tr>
+                    <tr>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Accion</th>
+
+                    </tr>
                 </thead>
                 <tbody>
-                {% for reason in reasons %}
-                <tr>
-                    <td>{{reason.description}}</td>
-                    <td>{{reason.state}}</td>
-                </tr>
-                {% endfor %}
+                    {% for reason in reasons %}
+                    <tr>
+                        <td>{{reason.description}}</td>
+                        <td class="text-center">
+                            <a href="{% url 'employee:update_reason' reason.id %}">
+                                <i class="fa fa-list-alt" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
