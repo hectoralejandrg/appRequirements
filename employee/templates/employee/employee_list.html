@@ -1,16 +1,11 @@
-{% extends 'base.html' %}
-
-{% block nav %}
-{% include 'sidebar.html' %}
-{% endblock %}
-
-{% block content %}
+{% extends 'base.html' %} {% block nav %} {% include 'sidebar.html' %} {% endblock %} {% block content %}
 <div class="m-3">
     <div class="card">
         <div class="card-header">
             <a href="{% url 'employee:new_employee' %}" class="btn btn-primary"><i class="fa fa-plus-circle"></i>
                 Agregar Empleado</a>
         </div>
+
         <div class="card-body">
             <table class="table">
                 <thead>
@@ -36,8 +31,7 @@
                                 </a>
                             </div>
                             <div>
-                                <button type="button" id="showModal" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-employee="{{employee.id}}" data-bs-target="#myModal">
+                                <button type="button" id="showModal" class="btn btn-danger" data-bs-toggle="modal" data-bs-employee="{{employee.id}}" data-bs-target="#myModal">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                                 </button>
                             </div>
@@ -50,10 +44,7 @@
     </div>
 
 </div>
-{% endblock %}
-
-
-{% block modal%}
+{% endblock %} {% block modal%}
 <div class="modal" id="myModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -72,15 +63,12 @@
         </div>
     </div>
 </div>
-{% endblock %}
-
-{% block js %}
+{% endblock %} {% block js %}
 <script>
     const print = () => {
         const button = document.getElementById('showModal')
         console.log(myModal)
         console.log(button)
     }
-
 </script>
 {% endblock %}
