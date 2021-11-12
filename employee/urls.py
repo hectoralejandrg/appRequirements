@@ -12,8 +12,8 @@ urlpatterns =[
     #Employee
     path('employee/', login_required(EmployeeGenericView.as_view()), name="list_employee"),
     path('employee/new', login_required(EmployeeCreateView.as_view()), name="new_employee"),
-    path('employee/<pk>/detail', login_required(EmployeeDetailView.as_view()), name='detail_employee'),
     path('employee/<pk>/update', login_required(EmployeeUpdateView.as_view()), name='update_employee'),
+    path('employee/<pk>/detail', login_required(EmployeeDetailView.as_view()), name='detail_employee'),
     path('employee/<pk>/delete', login_required(EmployeeDeleteView.as_view()), name='delete_employee'),
     #Requirements
     path('requirements/', RequirementsGenericView.as_view(), name="list_requirements"),

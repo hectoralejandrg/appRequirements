@@ -8,9 +8,8 @@
         {% csrf_token %}
         <li class="list-group-item">
             <button class="btn btn-danger" type="submit">Eliminar</button>
-            <a href="{% url 'employee:list_employee' %}" class="btn btn-info">Regresar</a>
+            <a href="{% url 'employee:list_employee' %}" class="btn btn-info">Cancelar</a>
         </li>
     </form>
-
 </ul>
 {% endblock %}

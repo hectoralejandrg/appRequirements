@@ -1,4 +1,3 @@
-from django.db import models
 from django.views.generic import ListView, CreateView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView
 from employee.forms import EmployeeForm, LoginForm, RequirementForm
@@ -23,10 +22,12 @@ class EmployeeCreateView(CreateView):
 class EmployeeUpdateView(UpdateView):
     model = Employee
     form_class = EmployeeForm
-    sucess_url = '/employee/'
+
+    def get_success_url(self):
+        return '/employee/'
 
 class EmployeeDetailView(DetailView):
-    queryset = Employee.objects.all()
+    model = Employee
 
 class EmployeeDeleteView(DeleteView):
     model = Employee
