@@ -36,10 +36,12 @@ class EmployeeDeleteView(DeleteView):
 #Requirements CRUD
 class RequirementsGenericView(ListView):
     model = Requirements
+    template_name= 'requirements/requirements_list.html'
     context_object_name = 'requirements'
 
 class RequirementsCreateView(CreateView):
     model = Requirements
+    template_name= 'requirements/requirements_form.html'
     form_class = RequirementForm
     success_url= '/requirements/'
 
@@ -47,22 +49,23 @@ class RequirementsCreateView(CreateView):
 #Reason CRUD
 class ReasonGenericView(ListView):
     model = Reason
+    template_name= 'reason/reason_list.html'
     context_object_name = 'reasons'
 
 class ReasonCreateView(CreateView):
     model = Reason
+    template_name= 'reason/reason_form.html'
     form_class = ReasonForm
     success_url= '/reason/'
 
 class ReasonUpdateView(UpdateView):
     model = Reason
+    template_name= 'reason/reason_form.html'
     form_class = ReasonForm
     sucess_url = '/reason/'
 
-
 class ReasonDetailView(DetailView):
     queryset = Reason.objects.all()
-
 
 class ReasonDeleteView(DeleteView):
     model = Reason
@@ -71,5 +74,6 @@ class ReasonDeleteView(DeleteView):
 #Holidays CRUD
 class HolidaysGenericView(ListView):
     model = Holidays
+    template_name= 'holidays/holidays_list.html'
     context_object_name = 'holidays'
 

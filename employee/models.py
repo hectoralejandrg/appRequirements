@@ -25,8 +25,8 @@ class Reason(models.Model):
 class Requirements(models.Model):
     code = models.CharField(max_length=15)
     date_requirement = models.DateField()
-    date_start = models.DateField()
-    date_end = models.DateField()
+    date_start = models.DateTimeField()
+    date_end = models.DateTimeField()
     hours_discount = models.IntegerField()
     employee = models.ForeignKey(
         Employee,

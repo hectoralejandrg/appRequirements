@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.grid-home {
+  display: grid;
+  grid-template-columns: 25% 75%;
+  grid-template-rows: max-content;
+  grid-template-areas: 
+  "sidebar main"
+}
+
+.sidebar{
+  grid-area: sidebar;
+  position: fixed;
+}
+.main{
+  grid-area: main;
+}
+

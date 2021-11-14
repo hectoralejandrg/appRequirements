@@ -1,6 +1,6 @@
 {% extends 'base.html' %} 
 
-{% block nav %} 
+{% block sidebar %} 
 {% include 'sidebar.html' %} 
 {% endblock %} 
 
@@ -19,6 +19,7 @@
                         <th scope="col">Fecha de Inicio</th>
                         <th scope="col">Fecha de Fin</th>
                         <th scope="col">Descuento de Horas</th>
+                        <th scope="col" class="text-center">Accion</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,6 +30,17 @@
                         <td>{{requirements.date_start}}</td>
                         <td>{{requirements.date_end}}</td>
                         <td>{{requirements.hours_discount}}</td>
+                        <td class="d-flex justify-content-center">
+                            <div class="me-1">
+                                <a class="btn btn-primary" href="#">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a class="btn btn-danger" href="#"><i
+                                        class="fa fa-trash" aria-hidden="true"></i></a>
+                            </div>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
