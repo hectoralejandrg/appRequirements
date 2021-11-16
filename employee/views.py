@@ -77,13 +77,16 @@ class ReasonUpdateView(UpdateView):
     model = Reason
     template_name= 'reason/reason_form.html'
     form_class = ReasonForm
-    sucess_url = '/reason/'
+    def get_success_url(self):
+        return '/reason/'
 
 class ReasonDetailView(DetailView):
-    queryset = Reason.objects.all()
+    model = Reason
+    template_name= 'reason/reason_detail.html'
 
 class ReasonDeleteView(DeleteView):
     model = Reason
+    template_name= 'reason/reason_form.html'
     success_url = '/reason/'
 
 #Holidays CRUD

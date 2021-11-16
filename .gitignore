@@ -1,4 +1,4 @@
 /.idea
 /.vscode
 bd.sqlite3
-/venv
+venv/
