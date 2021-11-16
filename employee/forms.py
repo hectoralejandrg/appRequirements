@@ -65,6 +65,8 @@ class ReasonForm(forms.ModelForm):
         model = Reason
         fields = ('__all__')
     
+    name = forms.CharField(
+        label='Nombre', widget=forms.TextInput(attrs={'class': 'form-control'}))
     description = forms.CharField(
         label='Descripcion', widget=forms.TextInput(attrs={'class': 'form-control'}))
 
