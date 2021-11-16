@@ -32,12 +32,12 @@
                         <td>{{requirements.hours_discount}}</td>
                         <td class="d-flex justify-content-center">
                             <div class="me-1">
-                                <a class="btn btn-primary" href="#">
+                                <a class="btn btn-primary" href="{% url 'employee:update_requirements' requirements.id %}">
                                     <i class="fa fa-edit"></i>
                                 </a>
                             </div>
                             <div>
-                                <a class="btn btn-danger" href="#"><i
+                                <a class="btn btn-danger" href="{% url 'employee:detail_requirements' requirements.id %}"><i
                                         class="fa fa-trash" aria-hidden="true"></i></a>
                             </div>
                         </td>

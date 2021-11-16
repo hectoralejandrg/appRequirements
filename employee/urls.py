@@ -1,5 +1,5 @@
 from django.urls import path
-from employee.views import EmployeeDeleteView, EmployeeDetailView, EmployeeGenericView, EmployeeUpdateView, Login, ReasonGenericView, RequirementsGenericView,HolidaysGenericView, EmployeeCreateView, RequirementsCreateView, ReasonCreateView, ReasonUpdateView, ReasonDeleteView
+from employee.views import EmployeeDeleteView, EmployeeDetailView, EmployeeGenericView, EmployeeUpdateView, Login, ReasonGenericView, RequirementsDeleteView, RequirementsDetailView, RequirementsGenericView,HolidaysGenericView, EmployeeCreateView, RequirementsCreateView, ReasonCreateView, ReasonUpdateView, ReasonDeleteView, RequirementsUpdateView
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 
@@ -16,8 +16,11 @@ urlpatterns =[
     path('employee/<pk>/detail', login_required(EmployeeDetailView.as_view()), name='detail_employee'),
     path('employee/<pk>/delete', login_required(EmployeeDeleteView.as_view()), name='delete_employee'),
     #Requirements
-    path('requirements/', RequirementsGenericView.as_view(), name="list_requirements"),
-    path('requirements/new', RequirementsCreateView.as_view(), name="new_requirements"),
+    path('requirements/', login_required(RequirementsGenericView.as_view()), name="list_requirements"),
+    path('requirements/new', login_required(RequirementsCreateView.as_view()), name="new_requirements"),
+    path('requirements/<pk>/update', login_required(RequirementsUpdateView.as_view()), name='update_requirements'),
+    path('requirements/<pk>/detail', login_required(RequirementsDetailView.as_view()), name='detail_requirements'),
+    path('requirements/<pk>/delete', login_required(RequirementsDeleteView.as_view()), name='delete_requirements'),
     #Reasons
     path('reason/', ReasonGenericView.as_view(), name="list_reason"),
     path('reason/new', ReasonCreateView.as_view(), name="new_reason"),

@@ -45,6 +45,21 @@ class RequirementsCreateView(CreateView):
     form_class = RequirementForm
     success_url= '/requirements/'
 
+class RequirementsUpdateView(UpdateView):
+    model = Requirements
+    template_name= 'requirements/requirements_form.html'
+    form_class = RequirementForm
+
+    def get_success_url(self):
+        return '/requirements/'
+
+class RequirementsDetailView(DetailView):
+    model = Requirements
+    template_name= 'requirements/requirements_detail.html'
+
+class RequirementsDeleteView(DeleteView):
+    model = Requirements
+    success_url = '/requirements/'
 
 #Reason CRUD
 class ReasonGenericView(ListView):
