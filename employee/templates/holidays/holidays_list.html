@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 
 {% block sidebar %}
 {% include 'sidebar.html' %}
@@ -7,26 +7,43 @@
 {% block content %}
 <div class="m-3">
     <div class="card">
+        <div class="card-header">
+            <a href="{% url 'holiday:new_holiday' %}" class="btn btn-primary"><i class="fa fa-plus-circle"></i>
+                Agregar Empleado</a>
+        </div>
+
         <div class="card-body">
             <table class="table">
                 <thead>
-                <tr>
-                    <th scope="col">Fecha de Inicio</th>
-                    <th scope="col">Fecha de Fin</th>
-                    <th scope="col">Dias</th>
-                </tr>
+                    <tr>
+                        <th scope="col">Fecha de Inicio</th>
+                        <th scope="col">Fecha de Fin</th>
+                        <th scope="col">Dias</th>
+                    </tr>
                 </thead>
                 <tbody>
-                {% for holiday in holidays %}
-                <tr>
-                    <td>{{holiday.date_start}</td>
-                    <td>{{holiday.date_end}</td>
-                    <td>{{holiday.days}</td>
-                </tr>
-                {% endfor %}
+                    {% for holiday in holidays %}
+                    <tr>
+                        <td>{{holiday.date_start}</td>
+                        <td>{{holiday.date_end}</td>
+                        <td>{{holiday.days}</td>
+                        <td class="d-flex justify-content-center">
+                            <div class="me-1">
+                                <a class="btn btn-primary" href="{% url 'holiday:update_holiday' holiday.id %}">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a class="btn btn-danger" href="{% url 'holiday:detail_holiday' holiday.id %}"><i
+                                        class="fa fa-trash" aria-hidden="true"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
     </div>
+
 </div>
 {% endblock %}

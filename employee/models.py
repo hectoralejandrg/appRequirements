@@ -51,5 +51,12 @@ class Holidays(models.Model):
     date_end = models.DateField()
     days = models.DateField()
 
+    employee = models.ForeignKey(
+        Employee,
+        related_name='employee',
+        on_delete=models.SET_NULL,
+        null=True
+    )
     def __str__(self):
         return f'{self.date_start} - {self.date_end} - {self.days}'
+        

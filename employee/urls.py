@@ -29,5 +29,9 @@ urlpatterns =[
     path('reason/<pk>/delete', ReasonDeleteView.as_view(), name='delete_reason'),
     #Holidays
     path('holidays/', HolidaysGenericView.as_view(), name="list_holidays"),
+    path('holidays/new', holidaysCreateView.as_view(), name="new_holidays"),
+    path('holidays/<pk>/update', holidayspdateView.as_view(), name='update_holidays'),
+    path('holidays/<pk>/detail', holidaysDetailView.as_view(), name='detail_holidays'),
+    path('holidays/<pk>/delete', holidaysDeleteView.as_view(), name='delete_holidays'),
 ]
 
