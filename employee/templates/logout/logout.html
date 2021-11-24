@@ -1,0 +1,21 @@
+{% extends 'base.html' %} 
+
+{% block logout %} 
+
+<nav class="navbar" style="background-color:black;">
+    <div>
+        <h2 style="text-align:center; color:white; margin-top:5px" class="card-title ms-3">
+            Ha Cerrado su Sesion....</h2>
+    </div>
+</nav>
+<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <div style="text-align:center; margin-top: 10px">
+        <h4 style="text-align: center; color: black;" class="card-title ms-5">
+            Gracias por confiar en nuestro sistema ,espero vuelvas pronto!</h4>
+    </nav>   
+    <div style="text-align:center; margin-top: 15px">
+        <a style="margin-top: 15px" href="{% url 'employee:login' %}">Volver al login</a>
+    </div> 
+</div>
+
+{% endblock %}
