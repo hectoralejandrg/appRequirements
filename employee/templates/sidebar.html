@@ -32,17 +32,7 @@
     </li>
   </ul>
   <hr>
-  <div class="">
-
-    <div class="dropdown">
-      <a href="#" class="d-flex align-items-center text-white text-decoration-none " id="dropdownUser1"
-        aria-expanded="false">
-        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-        <label>Cerrar sesión</label>
-        <div class="log-out">
-          <i class='bx bx-log-out' id="log-out"></i>
-        </div>
-      </a>
-    </div>
+  <div class="btn btn-danger">
+    <a class="btn-danger" href="{% url 'employee:logout' %}">Cerrar Sesion</a>
   </div>
 </div>

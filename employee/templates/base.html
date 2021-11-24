@@ -11,15 +11,17 @@
     <link rel="stylesheet" href="{% static '/css/style.css' %}">
 </head>
 
-<body class="grid-home">
-    <div class="sidebar">
-        {% block sidebar %} {% endblock %}
+<body>
+    <div class="grid-home">
+        <div class="sidebar">
+            {% block sidebar %} {% endblock %}
+        </div>
+
+        <main class="main">
+            {% block content %} {% endblock %}
+        </main>
     </div>
-
-    <main class="main">
-        {% block content %} {% endblock %}
-    </main>
-
+    
     <div class="logout">
         {% block logout %} {% endblock %}
     </div>
