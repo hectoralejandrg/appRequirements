@@ -8,7 +8,7 @@ app_name= 'employee'
 urlpatterns =[
     #Login
     path('login/', Login.as_view(), name="login"),
-    path('logout/', auth_views.LogoutView.as_view(template_name='login/login_form.html'), name='logout'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='logout/logout.html'), name='logout'),
     #Employee
     path('employee/', login_required(EmployeeGenericView.as_view()), name="list_employee"),
     path('employee/new', login_required(EmployeeCreateView.as_view()), name="new_employee"),
