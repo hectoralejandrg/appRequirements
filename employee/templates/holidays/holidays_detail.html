@@ -1,9 +1,7 @@
-{% extends 'base.html' %}
-
-{% block sidebar %}
-{% include 'sidebar.html' %}
-{% endblock %}
-
+{% extends 'base.html' %} 
+{% block sidebar %} 
+{% include 'sidebar.html' %} 
+{% endblock %} 
 
 {% block content %}
 <div class="card me-5 ms-5 mt-3 mb-3">
@@ -12,10 +10,10 @@
     </div>
     <div class="card-body">
         <p>Esta seguro que desea eliminar el registro de <strong>{{ object.lastname }} {{ object.name }}</strong>?</p>
-        <form method="post" action="{% url 'holiday:delete_holiday' object.id %}">
+        <form method="post" action="{% url 'employee:delete_holidays' object.id %}">
             {% csrf_token %}
             <button class="btn btn-danger" type="submit">Eliminar</button>
-            <a href="{% url 'holiday:list_holiday' %}" class="btn btn-secondary">Regresar</a>
+            <a href="{% url 'employee:list_holidays' %}" class="btn btn-secondary">Regresar</a>
         </form>
     </div>
 </div>

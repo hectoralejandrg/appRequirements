@@ -53,7 +53,7 @@ class Holidays(models.Model):
 
     employee = models.ForeignKey(
         Employee,
-        related_name='employee',
+        related_name='employeeHolidays',
         on_delete=models.SET_NULL,
         null=True
     )

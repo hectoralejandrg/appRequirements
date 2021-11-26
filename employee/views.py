@@ -1,6 +1,6 @@
 from django.views.generic import ListView, CreateView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView
-from employee.forms import EmployeeForm, LoginForm, RequirementForm, ReasonForm
+from employee.forms import EmployeeForm, HolidayForm, LoginForm, RequirementForm, ReasonForm
 from django.contrib.auth.views import LoginView
 from employee.models import Employee, Reason, Requirements, Holidays
 
@@ -94,4 +94,27 @@ class HolidaysGenericView(ListView):
     model = Holidays
     template_name= 'holidays/holidays_list.html'
     context_object_name = 'holidays'
+
+class HolidaysCreateView(CreateView):
+    model = Holidays
+    template_name= 'holidays/holidays_form.html'
+    form_class = HolidayForm 
+    success_url= '/holidays/'
+
+class HolidaysUpdateView(UpdateView):
+    model = Holidays
+    template_name= 'holidays/holidays_form.html'
+    form_class = HolidayForm
+    def get_success_url(self):
+        return '/holidays/'
+
+class HolidaysDetailView(DetailView):
+    model = Holidays
+    template_name= 'holidays/holidays_detail.html'
+
+class HolidaysDeleteView(DeleteView):
+    model = Holidays
+    template_name= 'holidays/holidays_form.html'
+    success_url = '/holidays/'
+
 
