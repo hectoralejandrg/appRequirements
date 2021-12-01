@@ -21,7 +21,7 @@ class Reason(models.Model):
     state = models.BooleanField(default=True)
 
     def __str__(self):
-        return f'{self.name}{self.description}'
+        return f'{self.name} - {self.description}'
 
 class Requirements(models.Model):
     code = models.CharField(max_length=15)
@@ -49,7 +49,7 @@ class Requirements(models.Model):
 class Holidays(models.Model):
     date_start = models.DateField()
     date_end = models.DateField()
-    days = models.DateField()
+    days = models.IntegerField()
 
     employee = models.ForeignKey(
         Employee,

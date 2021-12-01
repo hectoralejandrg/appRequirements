@@ -95,6 +95,7 @@ class HolidaysGenericView(ListView):
     template_name= 'holidays/holidays_list.html'
     context_object_name = 'holidays'
 
+
 class HolidaysCreateView(CreateView):
     model = Holidays
     template_name= 'holidays/holidays_form.html'

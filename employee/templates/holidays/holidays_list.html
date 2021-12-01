@@ -1,4 +1,5 @@
 {% extends 'base.html' %} 
+
 {% block sidebar %} 
 {% include 'sidebar.html' %} 
 {% endblock %} 
@@ -15,17 +16,20 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th scope="col">Empleado</th>
                         <th scope="col">Fecha de Inicio</th>
                         <th scope="col">Fecha de Fin</th>
                         <th scope="col">Dias</th>
+                        <th scope="col" class="text-center">Accion</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for holiday in holidays %}
+                    {% for holidays in holidays %}
                     <tr>
-                        <td>{{holiday.date_start}</td>
-                        <td>{{holiday.date_end}</td>
-                        <td>{{holiday.days}</td>
+                        <td>{{holidays.employee.name}} {{holidays.employee.lastname}}</td>
+                        <td>{{holidays.date_start}}</td>
+                        <td>{{holidays.date_end}}</td>
+                        <td>{{holidays.days}}</td>
                         <td class="d-flex justify-content-center">
                             <div class="me-1">
                                 <a class="btn btn-primary" href="{% url 'employee:update_holidays' holidays.id %}">

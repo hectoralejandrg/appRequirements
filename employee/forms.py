@@ -80,9 +80,9 @@ class HolidayForm(forms.ModelForm):
         fields = '__all__'
 
     date_start = forms.CharField(
-        label='Dia de Inicio', widget=forms.TextInput(attrs={'type': 'datetime-local', 'class': 'form-control'}))
+        label='Dia de Inicio', widget=forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}))
     date_end = forms.CharField(
-        label='Dia de Fin', widget=forms.TextInput(attrs={'type': 'datetime-local', 'class': 'form-control'}))
+        label='Dia de Fin', widget=forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}))
     days = forms.CharField(
         label='Dias de vacaciones', widget=forms.TextInput(attrs={'type': 'number', 'class':'form-control'}))
-    
+    employee = forms.ModelChoiceField(label='Empleado', empty_label='Seleccione', queryset=Employee.objects.all(), widget=forms.Select(attrs={'class':'form-select'}))
