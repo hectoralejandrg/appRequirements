@@ -115,5 +115,4 @@ class DynamicNameView(WeasyTemplateResponseMixin, MyDetailViewPDF):
         #data2= **data
         print(data)
         
-        name = data.__str__
-        return f'foo-{name}.pdf'
+        return f'foo-{data}.pdf'
