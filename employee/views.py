@@ -39,9 +39,9 @@ class EmployeeDeleteView(DeleteView):
 
 #Requirements CRUD
 class RequirementsGenericView(ListView):
-    paginate_by= 5
     model = Requirements
     template_name= 'requirements/requirements_list.html'
+    paginate_by= 10
     context_object_name = 'requirements'  
 
 class RequirementsCreateView(CreateView):

@@ -44,6 +44,9 @@ class Requirements(models.Model):
         null=True
     )
 
+    class Meta:
+        ordering = ('-pk', )
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         id = str(self.pk)
