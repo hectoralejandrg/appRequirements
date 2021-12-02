@@ -2,16 +2,15 @@
 <div class="pagination" style="margin-left: 380px;">
     <span class="step-links">
         {% if page_obj.has_previous %}
-            
-            <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+            <a class="btn btn-outline-primary btn-sm" href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i></a>
         {% endif %}
 
         <span class="current">
-            Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+            Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
         </span>
 
         {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">Siguiente</a> 
+            <a class="btn btn-outline-primary btn-sm" href="?page={{ page_obj.next_page_number }}"><i class="fa fa-chevron-circle-right" aria-hidden="true"></i></a> 
         {% endif %}
     </span>
 </div>
