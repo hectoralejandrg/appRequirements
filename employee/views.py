@@ -16,6 +16,7 @@ class Login(LoginView):
 #Employe CRUD
 class EmployeeGenericView(ListView):
     model = Employee
+    paginate_by= 10
     context_object_name = 'employees'
 
 class EmployeeCreateView(CreateView):
