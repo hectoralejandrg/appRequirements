@@ -46,8 +46,8 @@ class RequirementForm(forms.ModelForm):
         model = Requirements
         fields = '__all__'
 
-    code = forms.CharField(
-        label='Código', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    # code = forms.CharField(
+    #     label='Código', widget=forms.TextInput(attrs={'class': 'form-control'}))
     date_requirement = forms.CharField(
         label='Fecha del requerimiento', widget=forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}))
     date_start = forms.CharField(
@@ -65,6 +65,8 @@ class ReasonForm(forms.ModelForm):
         model = Reason
         fields = ('__all__')
     
+    name = forms.CharField(
+        label='Nombre', widget=forms.TextInput(attrs={'class': 'form-control'}))
     description = forms.CharField(
         label='Descripcion', widget=forms.TextInput(attrs={'class': 'form-control'}))
 
