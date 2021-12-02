@@ -15,7 +15,7 @@
         <div class="card-body">
             <table class="table">
                 <thead>
-                    <tr>
+                    <tr class="text-center">
                         <th scope="col">Empleado</th>
                         <th scope="col">Fecha de Inicio</th>
                         <th scope="col">Fecha de Fin</th>
@@ -25,7 +25,7 @@
                 </thead>
                 <tbody>
                     {% for holidays in holidays %}
-                    <tr>
+                    <tr class="text-center">
                         <td>{{holidays.employee.name}} {{holidays.employee.lastname}}</td>
                         <td>{{holidays.date_start}}</td>
                         <td>{{holidays.date_end}}</td>
@@ -46,6 +46,7 @@
                 </tbody>
             </table>
         </div>
+        {% include 'paginator.html' %}
     </div>
 
 </div>

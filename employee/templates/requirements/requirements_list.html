@@ -1,43 +1,48 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
-{% block sidebar %} 
-{% include 'sidebar.html' %} 
-{% endblock %} 
+{% block sidebar %}
+{% include 'sidebar.html' %}
+{% endblock %}
 
 {% block content %}
 <div class="m-3">
     <div class="card">
         <div class="card-header">
-            <a href="{% url 'employee:new_requirements' %}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Agregar Requerimiento</a>
+            <a href="{% url 'employee:new_requirements' %}" class="btn btn-primary"><i class="fa fa-plus-circle"></i>
+                Agregar Requerimiento</a>
         </div>
         <div class="card-body">
             <table class="table">
                 <thead>
-                    <tr>
+                    <tr class="text-center">
                         <th scope="col">Codigo</th>
+                        <th scope="col">Empleado</th>
                         <th scope="col">Requisito de Fecha</th>
                         <th scope="col">Fecha de Inicio</th>
                         <th scope="col">Fecha de Fin</th>
-                        <th scope="col">Descuento de Horas</th>
+                        <th scope="col">Horas de permiso</th>
                         <th scope="col" class="text-center">Accion</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for requirements in requirements %}
-                    <tr>
+                    <tr class="text-center">
                         <td>{{requirements.code}}</td>
+                        <td>{{requirements.employee.lastname}} {{requirements.employee.name}}</td>
                         <td>{{requirements.date_requirement}}</td>
                         <td>{{requirements.date_start}}</td>
                         <td>{{requirements.date_end}}</td>
                         <td>{{requirements.hours_discount}}</td>
                         <td class="d-flex justify-content-center">
                             <div class="me-1">
-                                <a class="btn btn-primary" href="{% url 'employee:update_requirements' requirements.id %}">
+                                <a class="btn btn-primary"
+                                    href="{% url 'employee:update_requirements' requirements.id %}">
                                     <i class="fa fa-edit"></i>
                                 </a>
                             </div>
                             <div>
-                                <a class="btn btn-danger" href="{% url 'employee:detail_requirements' requirements.id %}"><i
+                                <a class="btn btn-danger"
+                                    href="{% url 'employee:detail_requirements' requirements.id %}"><i
                                         class="fa fa-trash" aria-hidden="true"></i></a>
                             </div>
                         </td>
@@ -46,7 +51,8 @@
                 </tbody>
             </table>
         </div>
-    </div>
 
+        {% include 'paginator.html' %}
+    </div>
 </div>
 {% endblock %}

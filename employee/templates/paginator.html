@@ -1,0 +1,21 @@
+{% if paginator.num_pages > 1%}
+<div class="card-footer">
+    <div class="d-flex justify-content-center">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+            <a class="btn btn-outline-primary btn-sm" href="?page={{ page_obj.previous_page_number }}"><i
+                    class="fa fa-chevron-circle-left" aria-hidden="true"></i></a>
+            {% endif %}
+
+            <span class="current">
+                Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+            <a class="btn btn-outline-primary btn-sm" href="?page={{ page_obj.next_page_number }}"><i
+                    class="fa fa-chevron-circle-right" aria-hidden="true"></i></a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+{% endif %}
