@@ -40,6 +40,10 @@
                                 <a class="btn btn-danger" href="{% url 'employee:detail_requirements' requirements.id %}"><i
                                         class="fa fa-trash" aria-hidden="true"></i></a>
                             </div>
+                            <div>
+                                <a class="btn btn-success" href="{% url 'employee:report_requirements' requirements.id %}">
+                                    <i class="fa fa-print" aria-hidden="true"></i></a>
+                            </div>
                         </td>
                     </tr>
                     {% endfor %}
