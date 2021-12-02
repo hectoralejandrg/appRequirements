@@ -1,8 +1,12 @@
+from django.core import paginator
 from django.views.generic import ListView, CreateView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView
 from employee.forms import EmployeeForm, LoginForm, RequirementForm, ReasonForm
 from django.contrib.auth.views import LoginView
 from employee.models import Employee, Reason, Requirements, Holidays
+from django.core.paginator import Paginator
+from django.http import Http404
+
 
 #Login
 class Login(LoginView):
@@ -35,9 +39,10 @@ class EmployeeDeleteView(DeleteView):
 
 #Requirements CRUD
 class RequirementsGenericView(ListView):
+    paginate_by= 5
     model = Requirements
     template_name= 'requirements/requirements_list.html'
-    context_object_name = 'requirements'
+    context_object_name = 'requirements'  
 
 class RequirementsCreateView(CreateView):
     model = Requirements
