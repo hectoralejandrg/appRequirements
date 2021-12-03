@@ -1,5 +1,5 @@
 from django.urls import path
-from employee.views import EmployeeDeleteView, EmployeeDetailView, EmployeeGenericView, EmployeeUpdateView, Login, ReasonGenericView, RequirementsDeleteView, RequirementsDetailView, RequirementsGenericView,HolidaysGenericView, EmployeeCreateView, RequirementsCreateView, ReasonCreateView, ReasonUpdateView, ReasonDeleteView, RequirementsUpdateView,ReasonDetailView
+from employee.views import EmployeeDeleteView, EmployeeDetailView, EmployeeGenericView, EmployeeUpdateView, HolidaysCreateView, HolidaysDeleteView, HolidaysDetailView, HolidaysUpdateView, Login, ReasonGenericView, RequirementsDeleteView, RequirementsDetailView, RequirementsGenericView,HolidaysGenericView, EmployeeCreateView, RequirementsCreateView, ReasonCreateView, ReasonUpdateView, ReasonDeleteView, RequirementsUpdateView,ReasonDetailView
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 
@@ -8,7 +8,7 @@ app_name= 'employee'
 urlpatterns =[
     #Login
     path('login/', Login.as_view(), name="login"),
-    path('logout/', auth_views.LogoutView.as_view(template_name='login/login_form.html'), name='logout'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='logout/logout.html'), name='logout'),
     #Employee
     path('employee/', login_required(EmployeeGenericView.as_view()), name="list_employee"),
     path('employee/new', login_required(EmployeeCreateView.as_view()), name="new_employee"),
@@ -29,9 +29,9 @@ urlpatterns =[
     path('reason/<pk>/delete', ReasonDeleteView.as_view(), name='delete_reason'),
     #Holidays
     path('holidays/', HolidaysGenericView.as_view(), name="list_holidays"),
-    path('holidays/new', holidaysCreateView.as_view(), name="new_holidays"),
-    path('holidays/<pk>/update', holidayspdateView.as_view(), name='update_holidays'),
-    path('holidays/<pk>/detail', holidaysDetailView.as_view(), name='detail_holidays'),
-    path('holidays/<pk>/delete', holidaysDeleteView.as_view(), name='delete_holidays'),
+    path('holidays/new', HolidaysCreateView.as_view(), name="new_holidays"), 
+    path('holidays/<pk>/update', HolidaysUpdateView.as_view(), name='update_holidays'),
+    path('holidays/<pk>/detail', HolidaysDetailView.as_view(), name='detail_holidays'),
+    path('holidays/<pk>/delete', HolidaysDeleteView.as_view(), name='delete_holidays'),
 ]
 

@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
-from employee.models import Employee, Requirements, Reason
+from employee.models import Employee, Holidays, Requirements, Reason
 
 
 class LoginForm(AuthenticationForm):
@@ -46,8 +46,8 @@ class RequirementForm(forms.ModelForm):
         model = Requirements
         fields = '__all__'
 
-    code = forms.CharField(
-        label='Código', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    # code = forms.CharField(
+    #     label='Código', widget=forms.TextInput(attrs={'class': 'form-control'}))
     date_requirement = forms.CharField(
         label='Fecha del requerimiento', widget=forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}))
     date_start = forms.CharField(
@@ -73,4 +73,16 @@ class ReasonForm(forms.ModelForm):
 
     ##Reason = forms.ModelChoiceField(label='Reason', empty_label='Seleccione', queryset=Reason.objects.all(), widget=forms.Select(attrs={'class':'form-select'}))
 
+class HolidayForm(forms.ModelForm):
 
+    class Meta:
+        model = Holidays
+        fields = '__all__'
+
+    date_start = forms.CharField(
+        label='Dia de Inicio', widget=forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}))
+    date_end = forms.CharField(
+        label='Dia de Fin', widget=forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}))
+    days = forms.CharField(
+        label='Dias de vacaciones', widget=forms.TextInput(attrs={'type': 'number', 'class':'form-control'}))
+    employee = forms.ModelChoiceField(label='Empleado', empty_label='Seleccione', queryset=Employee.objects.all(), widget=forms.Select(attrs={'class':'form-select'}))

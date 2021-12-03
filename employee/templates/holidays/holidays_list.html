@@ -1,40 +1,43 @@
 {% extends 'base.html' %} 
 
-{% block sidebar %}
-{% include 'sidebar.html' %}
-{% endblock %}
+{% block sidebar %} 
+{% include 'sidebar.html' %} 
+{% endblock %} 
 
 {% block content %}
 <div class="m-3">
     <div class="card">
         <div class="card-header">
-            <a href="{% url 'holiday:new_holiday' %}" class="btn btn-primary"><i class="fa fa-plus-circle"></i>
-                Agregar Empleado</a>
+            <a href="{% url 'employee:new_holidays' %}" class="btn btn-primary"><i class="fa fa-plus-circle"></i>
+                Agregar Vacaciones</a>
         </div>
 
         <div class="card-body">
             <table class="table">
                 <thead>
-                    <tr>
+                    <tr class="text-center">
+                        <th scope="col">Empleado</th>
                         <th scope="col">Fecha de Inicio</th>
                         <th scope="col">Fecha de Fin</th>
                         <th scope="col">Dias</th>
+                        <th scope="col" class="text-center">Accion</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for holiday in holidays %}
-                    <tr>
-                        <td>{{holiday.date_start}</td>
-                        <td>{{holiday.date_end}</td>
-                        <td>{{holiday.days}</td>
+                    {% for holidays in holidays %}
+                    <tr class="text-center">
+                        <td>{{holidays.employee.name}} {{holidays.employee.lastname}}</td>
+                        <td>{{holidays.date_start}}</td>
+                        <td>{{holidays.date_end}}</td>
+                        <td>{{holidays.days}}</td>
                         <td class="d-flex justify-content-center">
                             <div class="me-1">
-                                <a class="btn btn-primary" href="{% url 'holiday:update_holiday' holiday.id %}">
+                                <a class="btn btn-primary" href="{% url 'employee:update_holidays' holidays.id %}">
                                     <i class="fa fa-edit"></i>
                                 </a>
                             </div>
                             <div>
-                                <a class="btn btn-danger" href="{% url 'holiday:detail_holiday' holiday.id %}"><i
+                                <a class="btn btn-danger" href="{% url 'employee:detail_holidays' holidays.id %}"><i
                                         class="fa fa-trash" aria-hidden="true"></i></a>
                             </div>
                         </td>
@@ -43,6 +46,7 @@
                 </tbody>
             </table>
         </div>
+        {% include 'paginator.html' %}
     </div>
 
 </div>
