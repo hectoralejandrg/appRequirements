@@ -2,26 +2,26 @@
   <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
     <label class="fs-4">ALCALDIA DE SANTA LUCIA</label>
   </a>
-
+  <!-- nav-link active" aria-current="page" -->
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
     <li class="nav-item">
-      <a href="{% url 'employee:list_employee' %}" class="nav-link active" aria-current="page">
+      <a href="{% url 'employee:list_employee' %}" class="nav-link text-white btn-outline-primary">
         Empleados
       </a>
     </li>
     <li>
-      <a href="{% url 'employee:list_requirements' %}" class="nav-link text-white">
+      <a href="{% url 'employee:list_requirements' %}" class="nav-link text-white btn-outline-primary">
         Requerimientos
       </a>
     </li>
     <li>
-      <a href="{% url 'employee:list_reason' %}" class="nav-link text-white">
+      <a href="{% url 'employee:list_reason' %}" class="nav-link text-white btn-outline-primary">
         Razones
       </a>
     </li>
     <li>
-      <a href="{% url 'employee:list_holidays' %}" class="nav-link text-white">
+      <a href="{% url 'employee:list_holidays' %}" class="nav-link text-white btn-outline-primary">
         Vacaciones
       </a>
     </li>
