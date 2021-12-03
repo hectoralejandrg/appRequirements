@@ -14,19 +14,19 @@
         <div class="card-body">
             <table class="table">
                 <thead>
-                    <tr>
+                    <tr class="text-center">
                         <th scope="col">Codigo</th>
                         <th scope="col">Empleado</th>
                         <th scope="col">Requisito de Fecha</th>
                         <th scope="col">Fecha de Inicio</th>
                         <th scope="col">Fecha de Fin</th>
-                        <th scope="col">Descuento de Horas</th>
+                        <th scope="col">Horas de permiso</th>
                         <th scope="col" class="text-center">Accion</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for requirements in requirements %}
-                    <tr>
+                    <tr class="text-center">
                         <td>{{requirements.code}}</td>
                         <td>{{requirements.employee.lastname}} {{requirements.employee.name}}</td>
                         <td>{{requirements.date_requirement}}</td>
@@ -51,9 +51,8 @@
                 </tbody>
             </table>
         </div>
-        <div class="card-footer">
-            {% include 'paginator.html' %}
-        </div>
+
+        {% include 'paginator.html' %}
     </div>
 </div>
 {% endblock %}

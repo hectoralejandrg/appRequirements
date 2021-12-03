@@ -21,7 +21,7 @@ class Reason(models.Model):
     state = models.BooleanField(default=True)
 
     def __str__(self):
-        return f'{self.name}{self.description}'
+        return f'{self.name} - {self.description}'
 
 class Requirements(models.Model):
     code = models.CharField(max_length=6, null=True, blank=True)
@@ -44,6 +44,9 @@ class Requirements(models.Model):
         null=True
     )
 
+    class Meta:
+        ordering = ('-pk', )
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         id = str(self.pk)
@@ -56,7 +59,14 @@ class Requirements(models.Model):
 class Holidays(models.Model):
     date_start = models.DateField()
     date_end = models.DateField()
-    days = models.DateField()
+    days = models.IntegerField()
 
+    employee = models.ForeignKey(
+        Employee,
+        related_name='employeeHolidays',
+        on_delete=models.SET_NULL,
+        null=True
+    )
     def __str__(self):
         return f'{self.date_start} - {self.date_end} - {self.days}'
+        

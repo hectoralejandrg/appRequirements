@@ -3,3 +3,5 @@
 /db.sqlite3
 /venv
 __pycache__/
+emplooye/__pycache__
+emplooye/migrations/__pycache__

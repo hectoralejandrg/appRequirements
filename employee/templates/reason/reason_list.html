@@ -1,4 +1,5 @@
 {% extends 'base.html' %} {% block sidebar %} {% include 'sidebar.html' %} {% endblock %} {% block content %}
+
 <div class="m-3">
     <div class="card">
         <div class="card-header">
@@ -8,7 +9,7 @@
     <div class="card-body">
       <table class="table">
         <thead>
-          <tr>
+          <tr class="text-center">
             <th scope="col">Nombre</th>
             <th scope="col">Descripcion</th>
             <th scope="col" class="text-center">Accion</th>
@@ -16,7 +17,7 @@
         </thead>
         <tbody>
           {% for reason in reasons %}
-          <tr>
+          <tr class="text-center">
             <td>{{reason.name}}</td>
             <td>{{reason.description}}</td>
             <td class="d-flex justify-content-center">
@@ -39,5 +40,6 @@
         </table>
     </div>
 </div>
+{% include 'paginator.html' %}
 </div>
 {% endblock %}

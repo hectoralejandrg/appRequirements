@@ -1,5 +1,5 @@
 from django.urls import path
-from employee.views import EmployeeDeleteView, EmployeeDetailView, EmployeeGenericView, EmployeeUpdateView, Login, ReasonGenericView, RequirementsDeleteView, RequirementsDetailView, RequirementsGenericView,HolidaysGenericView, EmployeeCreateView, RequirementsCreateView, ReasonCreateView, ReasonUpdateView, ReasonDeleteView, RequirementsUpdateView,ReasonDetailView
+from employee.views import EmployeeDeleteView, EmployeeDetailView, EmployeeGenericView, EmployeeUpdateView, HolidaysCreateView, HolidaysDeleteView, HolidaysDetailView, HolidaysUpdateView, Login, ReasonGenericView, RequirementsDeleteView, RequirementsDetailView, RequirementsGenericView,HolidaysGenericView, EmployeeCreateView, RequirementsCreateView, ReasonCreateView, ReasonUpdateView, ReasonDeleteView, RequirementsUpdateView,ReasonDetailView
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 
@@ -29,5 +29,9 @@ urlpatterns =[
     path('reason/<pk>/delete', ReasonDeleteView.as_view(), name='delete_reason'),
     #Holidays
     path('holidays/', HolidaysGenericView.as_view(), name="list_holidays"),
+    path('holidays/new', HolidaysCreateView.as_view(), name="new_holidays"), 
+    path('holidays/<pk>/update', HolidaysUpdateView.as_view(), name='update_holidays'),
+    path('holidays/<pk>/detail', HolidaysDetailView.as_view(), name='detail_holidays'),
+    path('holidays/<pk>/delete', HolidaysDeleteView.as_view(), name='delete_holidays'),
 ]
 
