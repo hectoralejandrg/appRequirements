@@ -6,7 +6,7 @@
 
 .grid-home {
   display: grid;
-  grid-template-columns: 25% 75%;
+  grid-template-columns: 25% auto;
   grid-template-rows: max-content;
   grid-template-areas: 
   "sidebar main"
