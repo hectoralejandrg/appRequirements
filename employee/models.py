@@ -1,5 +1,13 @@
 from django.db import models
 
+class Jefatura(models.Model):
+    description = models.CharField(max_length=100)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    state = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f'{self.description}'
 
 class Employee(models.Model):
     identification = models.CharField(max_length=13)
@@ -9,10 +17,17 @@ class Employee(models.Model):
     department = models.CharField(max_length=60)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    jefatura = models.ForeignKey(
+        Jefatura,
+        related_name='jefatura',
+        on_delete=models.SET_NULL,
+        null=True
+    )
     state = models.BooleanField(default=True)
-
+  
     def __str__(self):
         return f'{self.identification} - {self.name} {self.lastname}'
+        
 class Reason(models.Model):
     name = models.CharField(max_length=60)
     description = models.CharField(max_length=100)
@@ -21,7 +36,7 @@ class Reason(models.Model):
     state = models.BooleanField(default=True)
 
     def __str__(self):
-        return f'{self.name}{self.description}'
+        return f'{self.name} - {self.description}'
 
 class Requirements(models.Model):
     code = models.CharField(max_length=6, null=True, blank=True)
@@ -44,6 +59,9 @@ class Requirements(models.Model):
         null=True
     )
 
+    class Meta:
+        ordering = ('-pk', )
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         id = str(self.pk)
@@ -56,7 +74,14 @@ class Requirements(models.Model):
 class Holidays(models.Model):
     date_start = models.DateField()
     date_end = models.DateField()
-    days = models.DateField()
+    days = models.IntegerField()
 
+    employee = models.ForeignKey(
+        Employee,
+        related_name='employeeHolidays',
+        on_delete=models.SET_NULL,
+        null=True
+    )
     def __str__(self):
         return f'{self.date_start} - {self.date_end} - {self.days}'
+

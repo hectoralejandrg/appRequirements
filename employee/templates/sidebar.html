@@ -1,38 +1,38 @@
 <div class="fixed-start d-flex flex-column flex-shrink-0 p-3 text-white bg-dark w-100 vh-100">
-  <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+  <a href="{% url 'employee:list_reason' %}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
     <label class="fs-4">ALCALDIA DE SANTA LUCIA</label>
   </a>
-
+  <!-- nav-link active" aria-current="page" -->
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
     <li class="nav-item">
-      <a href="{% url 'employee:list_employee' %}" class="nav-link active" aria-current="page">
+      <a href="{% url 'employee:list_employee' %}" class="nav-link text-white btn-outline-primary">
         Empleados
       </a>
     </li>
     <li>
-      <a href="{% url 'employee:list_requirements' %}" class="nav-link text-white">
+      <a href="{% url 'employee:list_requirements' %}" class="nav-link text-white btn-outline-primary">
         Requerimientos
       </a>
     </li>
     <li>
-      <a href="{% url 'employee:list_reason' %}" class="nav-link text-white">
+      <a href="{% url 'employee:list_reason' %}" class="nav-link text-white btn-outline-primary">
         Razones
       </a>
     </li>
     <li>
-      <a href="{% url 'employee:list_holidays' %}" class="nav-link text-white">
+      <a href="{% url 'employee:list_holidays' %}" class="nav-link text-white btn-outline-primary">
         Vacaciones
       </a>
     </li>
     <li>
-      <a href="#" class="nav-link text-white">
-        <!-- Customers -->
+      <a href="{% url 'employee:list_jefatura' %}" class="nav-link text-white btn-outline-primary">
+        Jefatura
       </a>
     </li>
   </ul>
   <hr>
-  <div class="btn btn-danger">
-    <a class="btn-danger" href="{% url 'employee:logout' %}">Cerrar Sesion</a>
+  <div>
+    <a class="btn btn-danger w-100" href="{% url 'employee:logout' %}">Cerrar Sesion</a>
   </div>
 </div>

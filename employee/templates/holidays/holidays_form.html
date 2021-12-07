@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 
 {% block sidebar %}
 {% include 'sidebar.html' %}
@@ -21,8 +21,9 @@
             {% endfor %}
 
             <button type="submit" class="btn btn-primary">Guardar</button>
-            <a href="" class="btn btn-secondary">Regresar</a>
+            <a href="{% url 'employee:list_holidays' %}" class="btn btn-secondary">Regresar</a>
         </form>
     </div>
 </div>
 {% endblock %}
+
