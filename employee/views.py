@@ -1,9 +1,9 @@
 from django.core import paginator
 from django.views.generic import ListView, CreateView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView
-from employee.forms import EmployeeForm, HolidayForm, LoginForm, RequirementForm, ReasonForm
+from employee.forms import EmployeeForm, HolidayForm, JefaturaForm, LoginForm, RequirementForm, ReasonForm
 from django.contrib.auth.views import LoginView
-from employee.models import Employee, Reason, Requirements, Holidays
+from employee.models import Employee, Jefatura, Reason, Requirements, Holidays
 from django.core.paginator import Paginator
 from django.http import Http404
 
@@ -126,4 +126,31 @@ class HolidaysDeleteView(DeleteView):
     template_name= 'holidays/holidays_form.html'
     success_url = '/holidays/'
 
+#Jefatura CRUD
+class JefaturaGenericView(ListView):
+    model = Jefatura
+    paginate_by= 10
+    template_name= 'jefatura/jefatura_list.html'
+    context_object_name = 'jefaturas'
 
+class JefaturaCreateView(CreateView):
+    model = Jefatura
+    template_name= 'jefatura/jefatura_form.html'
+    form_class = JefaturaForm
+    success_url= '/jefatura/'
+
+class JefaturaUpdateView(UpdateView):
+    model = Jefatura
+    template_name= 'jefatura/jefatura_form.html'
+    form_class = JefaturaForm
+    def get_success_url(self):
+        return '/jefatura/'
+
+class JefaturaDetailView(DetailView):
+    model = Jefatura
+    template_name= 'jefatura/jefatura_detail.html'
+
+class JefaturaDeleteView(DeleteView):
+    model = Jefatura
+    template_name= 'jefatura/jefatura_form.html'
+    success_url = '/jefatura/'

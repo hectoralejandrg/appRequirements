@@ -1,5 +1,5 @@
 <div class="fixed-start d-flex flex-column flex-shrink-0 p-3 text-white bg-dark w-100 vh-100">
-  <a class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+  <a href="{% url 'employee:list_reason' %}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
     <label class="fs-4">ALCALDIA DE SANTA LUCIA</label>
   </a>
   <!-- nav-link active" aria-current="page" -->
@@ -23,6 +23,11 @@
     <li>
       <a href="{% url 'employee:list_holidays' %}" class="nav-link text-white btn-outline-primary">
         Vacaciones
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'employee:list_jefatura' %}" class="nav-link text-white btn-outline-primary">
+        Jefatura
       </a>
     </li>
   </ul>
