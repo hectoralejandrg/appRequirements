@@ -43,7 +43,17 @@ class RequirementsGenericView(ListView):
     model = Requirements
     template_name= 'requirements/requirements_list.html'
     paginate_by= 10
-    context_object_name = 'requirements'  
+    context_object_name = 'requirements'
+
+    def get_queryset(self):
+       result = super(RequirementsGenericView, self).get_queryset()
+       query = self.request.GET.get('search')
+       if query:
+           searchName = Requirements.objects.filter(employee__lastname__contains=query).order_by("-date_requirement")
+           result = searchName
+       else:
+           result = Requirements.objects.all()
+       return result
 
 class RequirementsCreateView(CreateView):
     model = Requirements
