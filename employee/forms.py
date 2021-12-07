@@ -45,7 +45,7 @@ class RequirementForm(forms.ModelForm):
 
     class Meta:
         model = Requirements
-        fields = '__all__'
+        exclude = ('code',)
 
     # code = forms.CharField(
     #     label='Código', widget=forms.TextInput(attrs={'class': 'form-control'}))
