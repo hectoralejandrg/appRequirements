@@ -110,9 +110,7 @@ class MyDetailViewPDF(DetailView):
 
 class DynamicNameView(WeasyTemplateResponseMixin, MyDetailViewPDF):
     # dynamically generate filename
-    def get_pdf_filename(self, *args, **kwargs):
-        data=self.get_context_data(**kwargs)
-        #data2= **data
-        print(data)
+    def get_pdf_filename(self):
+        data=self.get_context_data()
         
-        return f'foo-{data}.pdf'
+        return f'report.pdf'
