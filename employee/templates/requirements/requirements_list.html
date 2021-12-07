@@ -17,6 +17,7 @@
                     <tr class="text-center">
                         <th scope="col">Codigo</th>
                         <th scope="col">Empleado</th>
+                        <th scope="col">Jefatura</th>
                         <th scope="col">Requisito de Fecha</th>
                         <th scope="col">Fecha de Inicio</th>
                         <th scope="col">Fecha de Fin</th>
@@ -29,6 +30,7 @@
                     <tr class="text-center">
                         <td>{{requirements.code}}</td>
                         <td>{{requirements.employee.lastname}} {{requirements.employee.name}}</td>
+                        <td>{{requirements.employee.jefatura.description}}</td>
                         <td>{{requirements.date_requirement}}</td>
                         <td>{{requirements.date_start}}</td>
                         <td>{{requirements.date_end}}</td>

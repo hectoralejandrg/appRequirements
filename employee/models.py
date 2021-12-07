@@ -1,5 +1,13 @@
 from django.db import models
 
+class Jefatura(models.Model):
+    description = models.CharField(max_length=100)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    state = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f'{self.description}'
 
 class Employee(models.Model):
     identification = models.CharField(max_length=13)
@@ -9,6 +17,12 @@ class Employee(models.Model):
     department = models.CharField(max_length=60)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    jefatura = models.ForeignKey(
+        Jefatura,
+        related_name='jefatura',
+        on_delete=models.SET_NULL,
+        null=True
+    )
     state = models.BooleanField(default=True)
   
     def __str__(self):
@@ -71,12 +85,3 @@ class Holidays(models.Model):
     def __str__(self):
         return f'{self.date_start} - {self.date_end} - {self.days}'
 
-class Jefatura(models.Model):
-    description = models.CharField(max_length=100)
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    state = models.BooleanField(default=True)
-
-
-    def __str__(self):
-        return f'{self.description}'

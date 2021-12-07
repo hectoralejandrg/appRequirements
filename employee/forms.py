@@ -38,6 +38,7 @@ class EmployeeForm(forms.ModelForm):
         label='Departamento', widget=forms.TextInput(attrs={'class': 'form-control'}))
     job = forms.CharField(
         label='Cargo', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    jefatura = forms.ModelChoiceField(label='Jefatura', empty_label='Seleccione', queryset=Jefatura.objects.all(), widget=forms.Select(attrs={'class':'form-select'}))
 
 
 class RequirementForm(forms.ModelForm):
