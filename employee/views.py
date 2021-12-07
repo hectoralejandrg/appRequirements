@@ -8,6 +8,12 @@ from django.core.paginator import Paginator
 from django.http import Http404
 
 
+
+import functools
+from django.conf import settings
+from django_weasyprint import WeasyTemplateResponseMixin
+from django_weasyprint.views import WeasyTemplateResponse
+
 #Login
 class Login(LoginView):
     template_name= 'login/login_form.html'
@@ -113,7 +119,6 @@ class HolidaysGenericView(ListView):
     template_name= 'holidays/holidays_list.html'
     context_object_name = 'holidays'
 
-
 class HolidaysCreateView(CreateView):
     model = Holidays
     template_name= 'holidays/holidays_form.html'
@@ -164,3 +169,17 @@ class JefaturaDeleteView(DeleteView):
     model = Jefatura
     template_name= 'jefatura/jefatura_form.html'
     success_url = '/jefatura/'
+
+
+#ReportPDF
+class MyDetailViewPDF(DetailView):
+    # vanilla Django DetailView
+    model = Requirements
+    template_name = 'report/requirementsReport.html'
+
+class DynamicNameView(WeasyTemplateResponseMixin, MyDetailViewPDF):
+    # dynamically generate filename
+    def get_pdf_filename(self):
+        data=self.get_context_data()
+        
+        return f'report.pdf'
