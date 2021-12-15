@@ -13,8 +13,8 @@ class Employee(models.Model):
     identification = models.CharField(max_length=13)
     name = models.CharField(max_length=60)
     lastname = models.CharField(max_length=60)
-    job = models.CharField(max_length=60)
-    department = models.CharField(max_length=60)
+    # job = models.CharField(max_length=60)
+    # department = models.CharField(max_length=60)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     jefatura = models.ForeignKey(
