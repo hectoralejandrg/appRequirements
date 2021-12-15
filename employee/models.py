@@ -34,6 +34,7 @@ class Reason(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     state = models.BooleanField(default=True)
+    penalty = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.name} - {self.description}'
