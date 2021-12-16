@@ -170,12 +170,13 @@ class JefaturaDeleteView(DeleteView):
     success_url = '/jefatura/'
 
 
-#ReportPDF
+#ReportPDFRequirements
 class MyDetailViewPDF(DetailView):
     # vanilla Django DetailView
     model = Requirements
     template_name = 'report/requirementsReport.html'
 
+#ReportPDFHolidays
 class MyDetailViewPDF2(DetailView):
     # vanilla Django DetailView
     model = Holidays

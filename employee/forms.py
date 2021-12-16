@@ -34,10 +34,6 @@ class EmployeeForm(forms.ModelForm):
         label='Nombres', widget=forms.TextInput(attrs={'class': 'form-control'}))
     lastname = forms.CharField(
         label='Apellidos', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    # department = forms.CharField(
-    #     label='Departamento', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    # job = forms.CharField(
-    #     label='Cargo', widget=forms.TextInput(attrs={'class': 'form-control'}))
     jefatura = forms.ModelChoiceField(label='Cargo/Jefatura', empty_label='Seleccione', queryset=Jefatura.objects.all(), widget=forms.Select(attrs={'class':'form-select'}))
 
 
