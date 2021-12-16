@@ -175,4 +175,9 @@ class MyDetailViewPDF(DetailView):
     # vanilla Django DetailView
     model = Requirements
     template_name = 'report/requirementsReport.html'
-    
+
+class MyDetailViewPDF2(DetailView):
+    # vanilla Django DetailView
+    model = Holidays
+    template_name = 'report/holidaysReport.html'
+

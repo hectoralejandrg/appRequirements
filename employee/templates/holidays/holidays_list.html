@@ -17,6 +17,8 @@
                 <thead>
                     <tr class="text-center">
                         <th scope="col">Empleado</th>
+                        <th scope="col">CI</th>
+                        <th scope="col">Cargo/Jefatura</th>
                         <th scope="col">Fecha de Inicio</th>
                         <th scope="col">Fecha de Fin</th>
                         <th scope="col">Dias</th>
@@ -27,6 +29,8 @@
                     {% for holidays in holidays %}
                     <tr class="text-center">
                         <td>{{holidays.employee.name}} {{holidays.employee.lastname}}</td>
+                        <td>{{holidays.employee.identification}}</td>
+                        <td>{{holidays.employee.jefatura.description}}</td>
                         <td>{{holidays.date_start}}</td>
                         <td>{{holidays.date_end}}</td>
                         <td>{{holidays.days}}</td>
@@ -36,9 +40,13 @@
                                     <i class="fa fa-edit"></i>
                                 </a>
                             </div>
-                            <div>
+                            <div class="me-1">
                                 <a class="btn btn-danger" href="{% url 'employee:detail_holidays' holidays.id %}"><i
                                         class="fa fa-trash" aria-hidden="true"></i></a>
+                            </div>
+                            <div>
+                                <a class="btn btn-success" href="{% url 'employee:report_holidays' holidays.id %}"><i
+                                        class="fa fa-print" aria-hidden="true"></i></a>
                             </div>
                         </td>
                     </tr>
