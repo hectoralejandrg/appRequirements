@@ -72,7 +72,7 @@ class Requirements(models.Model):
 class Holidays(models.Model):
     date_start = models.DateField()
     date_end = models.DateField()
-    days = models.IntegerField()
+    days = models.IntegerField(30)
 
     employee = models.ForeignKey(
         Employee,
