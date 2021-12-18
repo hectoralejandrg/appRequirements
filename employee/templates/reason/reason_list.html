@@ -2,10 +2,9 @@
 
 <div class="m-3">
     <div class="card">
-        <div class="card-header">
-            <a href="{% url 'employee:new_reason' %}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Agregar motivos</a
-      >
-    </div>
+        <!-- <div class="card-header"> -->
+            <!-- <a href="{% url 'employee:new_reason' %}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Agregar motivos</a> -->
+    <!-- </div> -->
     <div class="card-body">
       <table class="table">
         <thead>
@@ -13,7 +12,6 @@
             <th scope="col">Nombre</th>
             <th scope="col">Descripcion</th>
             <th scope="col">Penalizacion</th>
-            <th scope="col" class="text-center">Accion</th>
           </tr>
         </thead>
         <tbody>
@@ -22,20 +20,6 @@
             <td>{{reason.name}}</td>
             <td>{{reason.description}}</td>
             <td>{{reason.penalty}}</td>
-            <td class="d-flex justify-content-center">
-              <div class="me-1">
-                <a
-                  class="btn btn-primary"
-                  href="{% url 'employee:update_reason' reason.id %}"
-                >
-                  <i class="fa fa-edit"></i>
-                </a>
-        </div>
-        <div>
-            <a class="btn btn-danger" href="{% url 'employee:detail_reason' reason.id %}"><i class="fa fa-trash" aria-hidden="true"></i
-                ></a>
-        </div>
-        </td>
         </tr>
         {% endfor %}
         </tbody>
