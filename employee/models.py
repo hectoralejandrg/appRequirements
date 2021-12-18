@@ -1,7 +1,7 @@
 from django.db import models
 
 class Jefatura(models.Model):
-    description = models.CharField(max_length=100)
+    description = models.CharField(max_length=200)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     state = models.BooleanField(default=True)
@@ -27,8 +27,8 @@ class Employee(models.Model):
         return f'{self.identification} - {self.name} {self.lastname}'
         
 class Reason(models.Model):
-    name = models.CharField(max_length=60)
-    description = models.CharField(max_length=100)
+    name = models.CharField(max_length=200)
+    description = models.CharField(max_length=200)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     state = models.BooleanField(default=True)
@@ -72,7 +72,7 @@ class Requirements(models.Model):
 class Holidays(models.Model):
     date_start = models.DateField()
     date_end = models.DateField()
-    days = models.IntegerField(30)
+    days = models.IntegerField()
 
     employee = models.ForeignKey(
         Employee,
