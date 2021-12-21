@@ -46,11 +46,11 @@ class RequirementForm(forms.ModelForm):
     # code = forms.CharField(
     #     label='Código', widget=forms.TextInput(attrs={'class': 'form-control'}))
     date_requirement = forms.CharField(
-        label='Fecha del requerimiento', widget=forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}))
+        label='Fecha de Solicitud del Permiso', widget=forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}))
     date_start = forms.CharField(
-        label='Inicio', widget=forms.TextInput(attrs={'type': 'datetime-local', 'class': 'form-control'}))
+        label='Inicio del Permiso', widget=forms.TextInput(attrs={'type': 'datetime-local', 'class': 'form-control'}))
     date_end = forms.CharField(
-        label='Fin', widget=forms.TextInput(attrs={'type': 'datetime-local', 'class': 'form-control'}))
+        label='Fin del Permiso', widget=forms.TextInput(attrs={'type': 'datetime-local', 'class': 'form-control'}))
     hours_discount = forms.CharField(
         label='Horas de permiso', widget=forms.TextInput(attrs={'type': 'number', 'class':'form-control'}))
     employee = forms.ModelChoiceField(label='Empleado', empty_label='Seleccione', queryset=Employee.objects.all(), widget=forms.Select(attrs={'class':'form-select'}))
