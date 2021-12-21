@@ -1,5 +1,5 @@
 from django.urls import path
-from employee.views import EmployeeDeleteView, EmployeeDetailView, EmployeeGenericView, EmployeeUpdateView, HolidaysCreateView, HolidaysDeleteView, HolidaysDetailView, HolidaysUpdateView, JefaturaCreateView, JefaturaDeleteView, JefaturaDetailView, JefaturaGenericView, JefaturaUpdateView, Login, ReasonGenericView, RequirementsDeleteView, RequirementsDetailView, RequirementsGenericView,HolidaysGenericView, EmployeeCreateView, RequirementsCreateView, ReasonCreateView, ReasonUpdateView, ReasonDeleteView, RequirementsUpdateView,ReasonDetailView, MyDetailViewPDF
+from employee.views import *
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 
@@ -29,10 +29,10 @@ urlpatterns =[
     path('reason/<pk>/detail', ReasonDetailView.as_view(), name='detail_reason'),
     path('reason/<pk>/delete', ReasonDeleteView.as_view(), name='delete_reason'),
     #Holidays
-    path('holidays/', HolidaysGenericView.as_view(), name="list_holidays"),
-    path('holidays/new', HolidaysCreateView.as_view(), name="new_holidays"), 
-    path('holidays/<pk>/update', HolidaysUpdateView.as_view(), name='update_holidays'),
-    path('holidays/<pk>/detail', HolidaysDetailView.as_view(), name='detail_holidays'),
+    path('holidays/', login_required(HolidaysGenericView.as_view()), name="list_holidays"),
+    path('holidays/new', login_required(HolidaysCreateView.as_view()), name="new_holidays"), 
+    path('holidays/<pk>/update', login_required(HolidaysUpdateView.as_view()), name='update_holidays'),
+    path('holidays/<pk>/detail', login_required(HolidaysDetailView.as_view()), name='detail_holidays'),
     path('holidays/<pk>/delete', HolidaysDeleteView.as_view(), name='delete_holidays'),
     #Jefatura
     path('jefatura/', login_required(JefaturaGenericView.as_view()), name="list_jefatura"),
@@ -40,5 +40,8 @@ urlpatterns =[
     path('jefatura/<pk>/update', login_required(JefaturaUpdateView.as_view()), name='update_jefatura'),
     path('jefatura/<pk>/detail', login_required(JefaturaDetailView.as_view()), name='detail_jefatura'),
     path('jefatura/<pk>/delete', login_required(JefaturaDeleteView.as_view()), name='delete_jefatura'),
+    #Penalty
+    path('penalty/', login_required(PenaltyGenericView.as_view()), name='list_penalty'),
+    path('penalty/new', login_required(PenaltyCreateView.as_view()), name='new_penalty'),
 ]
 
