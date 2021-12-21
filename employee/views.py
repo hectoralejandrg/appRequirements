@@ -1,9 +1,9 @@
 from django.core import paginator
 from django.views.generic import ListView, CreateView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView
-from employee.forms import EmployeeForm, HolidayForm, JefaturaForm, LoginForm, RequirementForm, ReasonForm
+from employee.forms import EmployeeForm, HolidayForm, JefaturaForm, LoginForm, PenaltyForm, RequirementForm, ReasonForm
 from django.contrib.auth.views import LoginView
-from employee.models import Employee, Jefatura, Reason, Requirements, Holidays
+from employee.models import Employee, Jefatura, Penalty, Reason, Requirements, Holidays
 from django.core.paginator import Paginator
 from django.http import Http404
 
@@ -170,16 +170,33 @@ class JefaturaDeleteView(DeleteView):
     template_name= 'jefatura/jefatura_form.html'
     success_url = '/jefatura/'
 
-
 #ReportPDF
 class MyDetailViewPDF(DetailView):
     # vanilla Django DetailView
     model = Requirements
     template_name = 'report/requirementsReport.html'
 
+#ReportPDFHolidays
+class MyDetailViewPDF2(DetailView):
+    # vanilla Django DetailView
+    model = Holidays
+    template_name = 'report/holidaysReport.html'
+
 # class DynamicNameView(WeasyTemplateResponseMixin, MyDetailViewPDF):
-    # dynamically generate filename
-    # def get_pdf_filename(self):
-        # data=self.get_context_data()
-        # 
-        # return f'report.pdf'
+#     # dynamically generate filename
+#     def get_pdf_filename(self):
+#         data=self.get_context_data()
+#         return f'report.pdf'
+
+class PenaltyGenericView(ListView):
+    model = Penalty
+    paginate_by= 10
+    template_name= 'penalty/penalty_list.html'
+    context_object_name = 'penalties'
+
+class PenaltyCreateView(CreateView):
+    model = Penalty
+    template_name= 'penalty/penalty_form.html'
+    form_class = PenaltyForm
+    success_url= '/penalty/'
+

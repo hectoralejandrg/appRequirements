@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+
+{% block logout %}
+<div class="container mt-1">
+    <div class="text-center">
+        <img src="../../static/img/gadlogo.png" alt="logo del gad">
+    </div>
+
+    <div>
+        <p style="text-align: left" class="fs-7 ">Santa Lucia, </p>
+        <p style="text-align: right" class="fs-7 "><strong>ASUNTO: </strong>SOLICITUD DE VACACIONES </p>
+    </div>
+
+    <div>
+        <p class="fs-10 me-1"><strong>Ingeniera <br> Mónica Guilcaza<br>Jefa de Talento Humano.<br> </strong>En su despacho.-</p>
+    </div>
+
+    <div> 
+        <p>De mis consideraciones:</p>   
+    </div>
+
+    <div> 
+        <p style="text-align: justify" class="text-justify">Por este medio, yo, <td>{{object.employee.name}} {{object.employee.lastname}}</td> ocupando actualmente el puesto de  <td>{{object.employee.jefatura.description}}</td> Ocupacional; bajo el régimen LOSEP me dirijo a Usted a fin de solicitarle los días de vacaciones que corresponden al presente periodo laboral.</p>
+        <p style="text-align: justify">Mediante, lo establecido en el art 29 de la LOSEP y en concordancia art. 27 de la Ley del Reglamento Interno del GAD Municipal del Cantón Santa Lucia, mediante el cual se formalizo nuestra relación laboral según art. 69 del Código de Trabajo, actualmente tengo derecho a 22 días de vacaciones por lo que, de ser posible, haría uso de <td>{{object.days}}</td> días de vacaciones a los que tengo derecho a partir del día <td>{{object.date_start}}</td> quedando días pendiente (s) siete día (s) de vacaciones.</p>
+        <p style="text-align: justify">La presente solicitud, se realiza con la debida antelación.</p>
+    </div>
+
+    <div class="d-flex justify-content-between mt-6">
+        <div class="text-center ">
+            <p><u>ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</u> <br> Firma del Solicitante</p>
+        </div>
+
+        <div class="text-center ">
+            <p><u>ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</u> <br>Nombre y Firma del Jefe Inmediato</p>
+        </div>
+    </div>
+    <div class="align-content-center">
+        <div class="text-center ">
+            <p> Vsto. Bno. <u>ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</u></p>
+        </div>
+    </div>
+
+    <div class="d-flex  "> 
+        <p style="text-align: justify" class="fs-7 me-1"><strong>CONDICIONES DE ACEPTACIÓN EN LA UNIDAD DE RECURSOS HUMANOS; </strong> Este Formulario debe ser entregado en la Unidad de Administración del Talento Humanos, antes del día que el empleado inicie su periodo vacacional.</p>
+    </div>
+
+    <div class="d-flex justify-content-between ">
+        <div class="text-center ">
+            <p>ㅤ</p>
+        </div>
+
+        <div>
+            <p style="text-align: right"><strong><u> Administración 2019-2023</u> <br>Calles Nicolás Martínez y Antonio Sa <br>Teléfono: (04) 2709175 <br>Email: municipiosta@gadsantalucia.gob.ec <br>www.gadsantalucia.gob.ec </strong> </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -9,7 +9,7 @@
         <h5 class="card-title ms-2">Vacaciones</h5>
     </div>
     <div class="card-body">
-        <p>Esta seguro que desea eliminar el registro de <strong>{{ object.lastname }} {{ object.name }}</strong>?</p>
+        <p>Esta seguro que desea eliminar las vacaciones de <strong>{{ object.employee.lastname }} {{ object.employee.name }}</strong>?</p>
         <form method="post" action="{% url 'employee:delete_holidays' object.id %}">
             {% csrf_token %}
             <button class="btn btn-danger" type="submit">Eliminar</button>

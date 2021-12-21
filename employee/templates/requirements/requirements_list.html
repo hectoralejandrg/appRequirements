@@ -26,7 +26,7 @@
                     <tr class="text-center">
                         <th scope="col">Codigo</th>
                         <th scope="col">Empleado</th>
-                        <th scope="col">Jefatura</th>
+                        <th scope="col">Cargo/Jefatura</th>
                         <th scope="col">Requisito de Fecha</th>
                         <th scope="col">Fecha de Inicio</th>
                         <th scope="col">Fecha de Fin</th>
@@ -56,7 +56,7 @@
                                     href="{% url 'employee:detail_requirements' requirements.id %}"><i
                                         class="fa fa-trash" aria-hidden="true"></i></a>
                             </div>
-                            <div>
+                            <div class="me-1">
                                 <a class="btn btn-success" href="{% url 'employee:report_requirements' requirements.id %}">
                                     <i class="fa fa-print" aria-hidden="true"></i></a>
                             </div>
