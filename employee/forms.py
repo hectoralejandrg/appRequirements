@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
-from employee.models import Employee, Holidays, Jefatura, Requirements, Reason
+from employee.models import Employee, Holidays, Jefatura, Penalty, Requirements, Reason
 
 
 class LoginForm(AuthenticationForm):
@@ -92,3 +92,16 @@ class JefaturaForm(forms.ModelForm):
     
     description = forms.CharField(
         label='Descripcion', widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+class PenaltyForm(forms.ModelForm):
+    class Meta:
+        model = Penalty
+        fields = ('__all__')
+
+    hours_penalty = forms.CharField(
+        label='Horas a penalizar', widget=forms.TextInput(attrs={'type': 'number', 'class': 'form-control', 'list':'datalistOptions'}))
+
+    observations = forms.CharField(
+        label='Nombre', widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+    requirement = forms.ModelChoiceField(label='Requirimientos', empty_label='Seleccione', queryset=Requirements.objects.all(), widget=forms.Select(attrs={'class':'form-select'}))

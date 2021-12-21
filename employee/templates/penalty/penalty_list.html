@@ -1,0 +1,45 @@
+{% extends 'base.html' %} 
+
+{% block sidebar %} 
+{% include 'sidebar.html' %} 
+{% endblock %} 
+
+{% block content %}
+<div class="m-3">
+    <div class="card">
+        <div class="card-header">
+            <a href="{% url 'employee:new_penalty' %}" class="btn btn-primary"><i class="fa fa-plus-circle"></i>
+                Agregar Penalización</a>
+        </div>
+
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr class="text-center">
+                        <th scope="col">Código</th>                        
+                        <th scope="col">Empleado</th>
+                        <th scope="col">Horas penalizadas</th>
+                        <th scope="col">Observación</th>
+                        <th scope="col" class="text-center">Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for penalty in penalties %}
+                    <tr class="text-center">
+                        <td>{{penalty.requirement.code}}</td>
+                        <td>{{penalty.requirement.employee.lastname}} {{penalty.requirement.employee.name}}</td>
+                        <td>{{penalty.hours_penalty}}</td>
+                        <td>{{penalty.observations}}</td>
+                        <td class="d-flex justify-content-center">
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% include 'paginator.html' %}
+    </div>
+
+</div>
+{% endblock %}

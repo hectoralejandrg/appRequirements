@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.base import Model
 
 class Jefatura(models.Model):
     description = models.CharField(max_length=200)
@@ -67,7 +68,7 @@ class Requirements(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'{self.code}- {self.date_requirement} - {self.date_start} - {self.date_end} - {self.hours_discount}'
+        return f'{self.code} - {self.employee.lastname} {self.employee.name}'
 
 class Holidays(models.Model):
     date_start = models.DateField()
@@ -83,3 +84,15 @@ class Holidays(models.Model):
     def __str__(self):
         return f'{self.date_start} - {self.date_end} - {self.days}'
 
+class Penalty(models.Model):
+    hours_penalty = models.IntegerField()
+    requirement = models.ForeignKey(
+        Requirements,
+        related_name='requirements',
+        on_delete=models.SET_NULL,
+        null=True
+    )
+    observations = models.TextField()
+
+    def __str__(self):
+        return f'{self.hours_penalty}'

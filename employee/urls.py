@@ -1,5 +1,5 @@
 from django.urls import path
-from employee.views import EmployeeDeleteView, EmployeeDetailView, EmployeeGenericView, EmployeeUpdateView, HolidaysCreateView, HolidaysDeleteView, HolidaysDetailView, HolidaysUpdateView, JefaturaCreateView, JefaturaDeleteView, JefaturaDetailView, JefaturaGenericView, JefaturaUpdateView, Login, MyDetailViewPDF2, ReasonGenericView, RequirementsDeleteView, RequirementsDetailView, RequirementsGenericView,HolidaysGenericView, EmployeeCreateView, RequirementsCreateView, ReasonCreateView, ReasonUpdateView, ReasonDeleteView, RequirementsUpdateView,ReasonDetailView, MyDetailViewPDF
+from employee.views import *
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 
@@ -41,5 +41,8 @@ urlpatterns =[
     path('jefatura/<pk>/update', login_required(JefaturaUpdateView.as_view()), name='update_jefatura'),
     path('jefatura/<pk>/detail', login_required(JefaturaDetailView.as_view()), name='detail_jefatura'),
     path('jefatura/<pk>/delete', login_required(JefaturaDeleteView.as_view()), name='delete_jefatura'),
+    #Penalty
+    path('penalty/', login_required(PenaltyGenericView.as_view()), name='list_penalty'),
+    path('penalty/new', login_required(PenaltyCreateView.as_view()), name='new_penalty'),
 ]
 
