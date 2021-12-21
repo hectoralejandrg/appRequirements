@@ -1,7 +1,8 @@
 from django.db import models
+from django.db.models.base import Model
 
 class Jefatura(models.Model):
-    description = models.CharField(max_length=100)
+    description = models.CharField(max_length=200)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     state = models.BooleanField(default=True)
@@ -13,8 +14,6 @@ class Employee(models.Model):
     identification = models.CharField(max_length=13)
     name = models.CharField(max_length=60)
     lastname = models.CharField(max_length=60)
-    job = models.CharField(max_length=60)
-    department = models.CharField(max_length=60)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     jefatura = models.ForeignKey(
@@ -29,11 +28,12 @@ class Employee(models.Model):
         return f'{self.identification} - {self.name} {self.lastname}'
         
 class Reason(models.Model):
-    name = models.CharField(max_length=60)
-    description = models.CharField(max_length=100)
+    name = models.CharField(max_length=200)
+    description = models.CharField(max_length=200)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     state = models.BooleanField(default=True)
+    penalty = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.name} - {self.description}'
@@ -69,7 +69,7 @@ class Requirements(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'{self.code}- {self.date_requirement} - {self.date_start} - {self.date_end} - {self.hours_discount}'
+        return f'{self.code} - {self.employee.lastname} {self.employee.name}'
 
 class Holidays(models.Model):
     date_start = models.DateField()
@@ -85,3 +85,15 @@ class Holidays(models.Model):
     def __str__(self):
         return f'{self.date_start} - {self.date_end} - {self.days}'
 
+class Penalty(models.Model):
+    hours_penalty = models.IntegerField()
+    requirement = models.ForeignKey(
+        Requirements,
+        related_name='requirements',
+        on_delete=models.SET_NULL,
+        null=True
+    )
+    observations = models.TextField()
+
+    def __str__(self):
+        return f'{self.hours_penalty}'
