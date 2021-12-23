@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block sidebar %}
+{% include 'sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="m-3">
+    <div class="card">
+        <form method="GET" action="{% url 'employee:list_report_penalty' %}">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div>
+                    <label for="">Empleado</label>
+                    <input class="form-control" list="datalistOptions" name="employee" placeholder="Buscar por CI">
+                    <datalist id="datalistOptions">
+                        {% for employee in employee %}
+                        <option value={{employee.identification}}>{{employee.lastname}}
+                            {{employee.name}}</option>
+                        {% endfor %}
+                    </datalist>
+                </div>
+                <div>
+                    <label class="d-flex justify-content-between align-items-center" for="">Fecha Inicio</label>
+                    <input class="form-control" type="date" name="dateStart">
+                </div>
+                <div>
+                    <label class="d-flex justify-content-between align-items-center" for="">Fecha Fin</label>
+                    <input class="form-control" type="date" name="dateEnd">
+                </div>
+                <div>
+                    <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i> Buscar</button>
+                </div>
+            </div>
+        </form>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="text-center">
+                        <th scope="col">Código de Requerimiento</th>
+                        <th scope="col">CI</th>
+                        <th scope="col">Empleado</th>
+                        <th scope="col">Horas penalizadas</th>
+                        <th scope="col">Observación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for penalty in context %}
+                    <tr class="text-center">
+                        <td>{{penalty.requirement.code}}</td>
+                        <td>{{penalty.requirement.employee.identification}}</td>
+                        <td>{{penalty.requirement.employee.lastname}} {{penalty.requirement.employee.name}}</td>
+                        <td>{{penalty.hours_penalty}}</td>
+                        <td>{{penalty.observations}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+{% endblock %}

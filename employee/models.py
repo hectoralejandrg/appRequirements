@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.base import Model
+import datetime
 
 class Jefatura(models.Model):
     description = models.CharField(max_length=200)
@@ -87,13 +88,14 @@ class Holidays(models.Model):
 
 class Penalty(models.Model):
     hours_penalty = models.IntegerField()
+    observations = models.TextField()
+    date = models.DateField(default=datetime.date.today)
     requirement = models.ForeignKey(
         Requirements,
         related_name='requirements',
         on_delete=models.SET_NULL,
         null=True
     )
-    observations = models.TextField()
-
     def __str__(self):
         return f'{self.hours_penalty}'
+

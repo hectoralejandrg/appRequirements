@@ -101,6 +101,9 @@ class PenaltyForm(forms.ModelForm):
     hours_penalty = forms.CharField(
         label='Horas a penalizar', widget=forms.TextInput(attrs={'type': 'number', 'class': 'form-control', 'list':'datalistOptions'}))
 
+    date = forms.CharField(
+    label='Fecha', widget=forms.TextInput(attrs={'type': 'date' , 'class': 'form-control'}))
+
     observations = forms.CharField(
         label='Nombre', widget=forms.TextInput(attrs={'class': 'form-control'}))
 

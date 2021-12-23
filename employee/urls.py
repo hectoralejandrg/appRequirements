@@ -44,5 +44,7 @@ urlpatterns =[
     #Penalty
     path('penalty/', login_required(PenaltyGenericView.as_view()), name='list_penalty'),
     path('penalty/new', login_required(PenaltyCreateView.as_view()), name='new_penalty'),
+    #reportPenalty
+    path('report/', login_required(ReportGenericView.as_view()), name='list_report_penalty'),
 ]
 
