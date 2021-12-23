@@ -31,9 +31,20 @@
                         <td>{{penalty.hours_penalty}}</td>
                         <td>{{penalty.observations}}</td>
                         <td class="d-flex justify-content-center">
-
+                            <div class="me-1">
+                                <a
+                                  class="btn btn-primary"
+                                  href="{% url 'employee:update_penalty' penalty.id %}"
+                                >
+                                  <i class="fa fa-edit"></i>
+                                </a>
+                        </div>
+                        <div>
+                            <a class="btn btn-danger" href="{% url 'employee:detail_penalty' penalty.id %}"><i class="fa fa-trash" aria-hidden="true"></i
+                                ></a>
+                        </div>
                         </td>
-                    </tr>
+                        </tr>
                     {% endfor %}
                 </tbody>
             </table>

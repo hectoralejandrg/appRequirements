@@ -8,7 +8,7 @@
     </div>
 
     <div>
-        <p style="text-align: left" class="fs-7 ">Santa Lucia, </p>
+        <p style="text-align: left" class="fs-7 ">Santa Lucia, <td>{{object.date_requirement}}</td> </p>
         <p style="text-align: right" class="fs-7 "><strong>ASUNTO: </strong>SOLICITUD DE VACACIONES </p>
     </div>
 
@@ -21,8 +21,8 @@
     </div>
 
     <div> 
-        <p style="text-align: justify" class="text-justify">Por este medio, yo, <td>{{object.employee.name}} {{object.employee.lastname}}</td> ocupando actualmente el puesto de  <td>{{object.employee.jefatura.description}}</td> Ocupacional; bajo el régimen LOSEP me dirijo a Usted a fin de solicitarle los días de vacaciones que corresponden al presente periodo laboral.</p>
-        <p style="text-align: justify">Mediante, lo establecido en el art 29 de la LOSEP y en concordancia art. 27 de la Ley del Reglamento Interno del GAD Municipal del Cantón Santa Lucia, mediante el cual se formalizo nuestra relación laboral según art. 69 del Código de Trabajo, actualmente tengo derecho a 22 días de vacaciones por lo que, de ser posible, haría uso de <td>{{object.days}}</td> días de vacaciones a los que tengo derecho a partir del día <td>{{object.date_start}}</td> quedando días pendiente (s) siete día (s) de vacaciones.</p>
+        <p style="text-align: justify" class="text-justify">Por este medio, yo, <u><td>{{object.employee.name}} {{object.employee.lastname}}</td></u> ocupando actualmente el puesto de  <u><td>{{object.employee.jefatura.description}}</td></u> Ocupacional; bajo el régimen LOSEP me dirijo a Usted a fin de solicitarle los días de vacaciones que corresponden al presente periodo laboral.</p>
+        <p style="text-align: justify">Mediante, lo establecido en el art 29 de la LOSEP y en concordancia art. 27 de la Ley del Reglamento Interno del GAD Municipal del Cantón Santa Lucia, mediante el cual se formalizo nuestra relación laboral según art. 69 del Código de Trabajo, actualmente tengo derecho a <u><td>{{object.days_current}}</td></u> días de vacaciones por lo que, de ser posible, haría uso de <u><td>{{object.days}}</td></u> días de vacaciones a los que tengo derecho a partir del día <u><td>{{object.date_start}}</td></u> quedando días pendiente (s) <u><td>{{object.days_pending}}</td></u> día (s) de vacaciones.</p>
         <p style="text-align: justify">La presente solicitud, se realiza con la debida antelación.</p>
     </div>
 
