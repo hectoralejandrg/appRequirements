@@ -200,3 +200,4 @@ class PenaltyCreateView(CreateView):
     form_class = PenaltyForm
     success_url= '/penalty/'
 
+
