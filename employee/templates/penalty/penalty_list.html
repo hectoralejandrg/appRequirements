@@ -1,8 +1,8 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
-{% block sidebar %} 
-{% include 'sidebar.html' %} 
-{% endblock %} 
+{% block sidebar %}
+{% include 'sidebar.html' %}
+{% endblock %}
 
 {% block content %}
 <div class="m-3">
@@ -15,7 +15,7 @@
             <table class="table">
                 <thead>
                     <tr class="text-center">
-                        <th scope="col">Código</th>                        
+                        <th scope="col">Código</th>
                         <th scope="col">Empleado</th>
                         <th scope="col">Horas penalizadas</th>
                         <th scope="col">Observación</th>
@@ -32,6 +32,15 @@
                         <td>{{penalty.observations}}</td>
                         <td>{{penalty.date}}</td>
                         <td class="d-flex justify-content-center">
+                            <div class="me-1">
+                                <a class="btn btn-primary" href="{% url 'employee:update_penalty' penalty.id %}">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                            </div>
+                            <div>
+                                <a class="btn btn-danger" href="{% url 'employee:detail_penalty' penalty.id %}"><i
+                                        class="fa fa-trash" aria-hidden="true"></i></a>
+                            </div>
                         </td>
                     </tr>
                     {% endfor %}

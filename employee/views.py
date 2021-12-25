@@ -236,4 +236,19 @@ class ReportGenericView(ListView):
         context = super().get_context_data(**kwargs)
         context['employee']=Employee.objects.all()
         return context
+class PenaltyUpdateView(UpdateView):
+    model = Penalty
+    template_name= 'penalty/penalty_form.html'
+    form_class = PenaltyForm
+    def get_success_url(self):
+        return '/penalty/'
+
+class PenaltyDetailView(DetailView):
+    model = Penalty
+    template_name= 'penalty/penalty_detail.html'
+
+class PenaltyDeleteView(DeleteView):
+    model = Penalty
+    template_name= 'penalty/penalty_form.html'
+    success_url = '/penalty/'
 

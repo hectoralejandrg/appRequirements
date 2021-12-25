@@ -79,7 +79,10 @@ class Migration(migrations.Migration):
             name='Holidays',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('date_requirement', models.DateField()),
+                ('days_current', models.IntegerField()),
                 ('date_start', models.DateField()),
+                ('days_pending', models.IntegerField()),
                 ('date_end', models.DateField()),
                 ('days', models.IntegerField()),
                 ('employee', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='employeeHolidays', to='employee.Employee')),
