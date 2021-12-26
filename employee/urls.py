@@ -22,6 +22,7 @@ urlpatterns =[
     path('requirements/<pk>/detail', login_required(RequirementsDetailView.as_view()), name='detail_requirements'),
     path('requirements/<pk>/delete', login_required(RequirementsDeleteView.as_view()), name='delete_requirements'),
     path('requirements/<pk>/report', login_required(MyDetailViewPDF.as_view()), name='report_requirements'),
+    # path('requirements/<pk>/report', login_required(DynamicNameView.as_view()), name='report_requirements'),
     #Reasons
     path('reason/', login_required(ReasonGenericView.as_view()), name="list_reason"),
     path('reason/new', login_required(ReasonCreateView.as_view()), name="new_reason"),
