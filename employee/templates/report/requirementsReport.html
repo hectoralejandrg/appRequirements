@@ -2,22 +2,22 @@
 
 {% block logout %}
 <div id="print" class="container">
-    <div class="container pt-3 d-flex justify-content-between">
+    <div class="container mt-5 d-flex justify-content-between">
         <a class="btn btn-secondary" href="{% url 'employee:list_requirements' %}">Regresar</a>
 
         <button class="btn btn-success" onclick="print()" > <i class="fa fa-print" aria-hidden="true"></i> </button>
     </div>
 </div>
-<div class="container mt-3">
+<div class="container mt-2">
     <div>
         <h3>N. registro: {{object.code}}</h3>
     </div>
     <div class="text-center">
         <img src="../../static/img/gadlogo.png" alt="logo del gad">
     </div>
-    <div class="text-center mt-5">
-        <h3>UNIDAD DE ADMINISTRACION DE TALENTO HUMANO</h3>
-        <h3>SOLICITUD DE PERMISOS - POR DIA / HORAS</h3>
+    <div class="text-center mt-2">
+        <h4>UNIDAD DE ADMINISTRACION DE TALENTO HUMANO</h4>
+        <h4>SOLICITUD DE PERMISOS - POR DIA / HORAS</h4>
     </div>
     <p class="mt-5">FECHA DE ENTREGA DE SOLICITUD: {{object.date_requirement}}</p>
 
@@ -50,20 +50,22 @@
     <div class="d-flex justify-content-between mt-5">
         <div class="text-center">
             <p>_____________________________</p>
-            <p> SOLICITANTE</p>
+            <p>SOLICITANTE</p>
             <p>{{object.employee.name}} {{object.employee.lastname}}</p>
         </div>
 
         <div class="text-center">
             <p>_____________________________</p>
-            <p>VISTO BUENO DE JEFE INMEDIATO</p>
-        </div>
-
-        <div class="text-center">
-            <p>_____________________________</p>
-            <p>RECIBIDO Y CONTABILIZADO:</p>
+            <p>RECIBIDO Y CONTABILIZADO</p>
             <p>UNIDAD DE ADMINISTRACIÓN</p>
             <p>DE TALENTO HUMANO</p>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center mt-3">
+        <div class="text-center">
+            <p>_____________________________</p>
+            <p>VISTO BUENO DE JEFE INMEDIATO</p>
         </div>
     </div>
 </div>
