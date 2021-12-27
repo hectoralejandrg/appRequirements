@@ -1,72 +1,132 @@
-{% extends 'base.html' %}
-
-{% block logout %}
-<div id="print" class="container">
-    <div class="container mt-5 d-flex justify-content-between">
-        <a class="btn btn-secondary" href="{% url 'employee:list_requirements' %}">Regresar</a>
-
-        <button class="btn btn-success" onclick="print()" > <i class="fa fa-print" aria-hidden="true"></i> </button>
-    </div>
-</div>
-<div class="container mt-2">
-    <div>
-        <h3>N. registro: {{object.code}}</h3>
-    </div>
-    <div class="text-center">
-        <img src="../../static/img/gadlogo.png" alt="logo del gad" width="126px" height="100px">
-    </div>
-    <div class="text-center mt-2">
-        <h4>UNIDAD DE ADMINISTRACION DE TALENTO HUMANO</h4>
-        <h4>SOLICITUD DE PERMISOS - POR DIA / HORAS</h4>
-    </div>
-    <p class="mt-5">FECHA DE ENTREGA DE SOLICITUD: {{object.date_requirement}}</p>
-
-    <table class="table table-bordered mt-2">
-        <thead>
-            <tr>
-                <th scope="col">CEDULA</th>
-                <th scope="col">DIRECCION / JEFATURA</th>
-                <th scope="col">APELLIDOS Y NOMBRES</th>
-                <th scope="col">FECHA DE PERMISO</th>
-                <th scope="col">HORA DE SALIDA</th>
-                <th scope="col">HORA DE LLEGADA</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{object.employee.identification}}</td>
-                <td>{{object.employee.jefatura.description}}</td>
-                <td>{{object.employee.lastname}} {{object.employee.name}}</td>
-                <td>{{object.date_requirement}}</td>
-                <td>{{object.date_start}}</td>
-                <td>{{object.date_end}}</td>
-            </tr>
-        </tbody>
-    </table>
-    <div class="d-flex align-items-center">
-        <p class="fs-4 me-1"><strong>Motivo: </strong></p>
-        <p class="fs-4"> {{object.reason.name}}</p>
-    </div>
-    <div class="d-flex justify-content-between mt-5">
-        <div class="text-center">
-            <p>_____________________________</p>
-            <p>SOLICITANTE</p>
-            <p>{{object.employee.name}} {{object.employee.lastname}}</p>
-        </div>
-
-        <div class="text-center">
-            <p>_____________________________</p>
-            <p>RECIBIDO Y CONTABILIZADO</p>
-            <p>UNIDAD DE ADMINISTRACIÓN</p>
-            <p>DE TALENTO HUMANO</p>
+    {% extends 'base.html' %}
+    {% block logout %}
+    <div id="print" class="container">
+        <div class="container mt-2 d-flex justify-content-between">
+            <a class="btn btn-secondary" href="{% url 'employee:list_requirements' %}">Regresar</a>
+    
+            <button class="btn btn-success" onclick="print()" > <i class="fa fa-print" aria-hidden="true"></i> </button>
         </div>
     </div>
-
-    <div class="d-flex justify-content-center mt-3">
-        <div class="text-center">
-            <p>_____________________________</p>
-            <p>VISTO BUENO DE JEFE INMEDIATO</p>
+    <div class="container mt-2">
+        <div>
+            <h5>N. registro: {{object.code}}</h5>
         </div>
+    
+        <div class="text-center mt-2">
+            <h4>UNIDAD DE ADMINISTRACION DE TALENTO HUMANO</h4>
+            <h4>SOLICITUD DE PERMISOS - POR DIA / HORAS</h4>
+        </div>
+        <p5 class="mt-2">FECHA DE ENTREGA DE SOLICITUD: {{object.date_requirement}}</p5>
+    
+        <table class="table table-bordered mt-2">
+            <thead>
+                <tr>
+                    <th scope="col">CEDULA</th>
+                    <th scope="col">DIRECCION / JEFATURA</th>
+                    <th scope="col">APELLIDOS Y NOMBRES</th>
+                    <th scope="col">FECHA DE PERMISO</th>
+                    <th scope="col">HORA DE SALIDA</th>
+                    <th scope="col">HORA DE LLEGADA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{object.employee.identification}}</td>
+                    <td>{{object.employee.jefatura.description}}</td>
+                    <td>{{object.employee.lastname}} {{object.employee.name}}</td>
+                    <td>{{object.date_requirement}}</td>
+                    <td>{{object.date_start}}</td>
+                    <td>{{object.date_end}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="d-flex align-items-center">
+            <p5 class="fs-4 me-1"><strong>Motivo: </strong></p5>
+            <p5 class="fs-4"> {{object.reason.name}}</p5>
+        </div>
+        <div class="d-flex justify-content-between mt-3">
+            <div class="text-center">
+                <p>___________________________</p>
+                <p4> SOLICITANTE</p4><br>
+                <p4>{{object.employee.name}} {{object.employee.lastname}}</p4><br>
+            </div>
+    
+            <div class="text-center">
+                <p>___________________________</p>
+                <p4>VISTO BUENO</p4><br>
+                <p4>DE JEFE INMEDIATO</p4><br>
+            </div>
+    
+            <div class="text-center">
+                <p>___________________________</p>
+                <p4>RECIBIDO Y CONTABILIZADO:</p4><br>
+                <p4>UNIDAD DE ADMINISTRACIÓN</p4><br>
+                <p4>DE TALENTO HUMANO</p4><br>
+            </div>
+        </div>
+        <div class="text-center">
+        <p>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ </p>
+        </div>
+    </div>
+    
+    <div class="container mt-2">
+        <div>
+            <h5>N. registro: {{object.code}}</h5>
+        </div>
+    
+        <div class="text-center mt-2">
+            <h4>UNIDAD DE ADMINISTRACION DE TALENTO HUMANO</h4>
+            <h4>SOLICITUD DE PERMISOS - POR DIA / HORAS</h4>
+        </div>
+        <p5 class="mt-2">FECHA DE ENTREGA DE SOLICITUD: {{object.date_requirement}}</p5>
+    
+        <table class="table table-bordered mt-2">
+            <thead>
+                <tr>
+                    <th scope="col">CEDULA</th>
+                    <th scope="col">DIRECCION / JEFATURA</th>
+                    <th scope="col">APELLIDOS Y NOMBRES</th>
+                    <th scope="col">FECHA DE PERMISO</th>
+                    <th scope="col">HORA DE SALIDA</th>
+                    <th scope="col">HORA DE LLEGADA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{object.employee.identification}}</td>
+                    <td>{{object.employee.jefatura.description}}</td>
+                    <td>{{object.employee.lastname}} {{object.employee.name}}</td>
+                    <td>{{object.date_requirement}}</td>
+                    <td>{{object.date_start}}</td>
+                    <td>{{object.date_end}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="d-flex align-items-center">
+            <p5 class="fs-4 me-1"><strong>Motivo: </strong></p5>
+            <p5 class="fs-4"> {{object.reason.name}}</p5>
+        </div>
+        <div class="d-flex justify-content-between mt-3">
+            <div class="text-center">
+                <p>___________________________</p>
+                <p4> SOLICITANTE</p4><br>
+                <p4>{{object.employee.name}} {{object.employee.lastname}}</p4><br>
+            </div>
+    
+            <div class="text-center">
+                <p>___________________________</p>
+                <p4>VISTO BUENO</p4><br>
+                <p4>DE JEFE INMEDIATO</p4><br>
+            </div>
+    
+            <div class="text-center">
+                <p>___________________________</p>
+                <p4>RECIBIDO Y CONTABILIZADO:</p4><br>
+                <p4>UNIDAD DE ADMINISTRACIÓN</p4><br>
+                <p4>DE TALENTO HUMANO</p4><br>
+            </div>
+        </div>
+    
     </div>
 </div>
 {% endblock %}
