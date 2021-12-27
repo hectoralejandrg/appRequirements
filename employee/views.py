@@ -3,6 +3,7 @@ from django.views.generic.edit import UpdateView, DeleteView
 from employee.forms import EmployeeForm, HolidayForm, JefaturaForm, LoginForm, PenaltyForm, RequirementForm, ReasonForm
 from django.contrib.auth.views import LoginView
 from employee.models import Employee, Jefatura, Penalty, Reason, Requirements, Holidays
+from django.db.models import Sum, Q
 
 
 #Login
@@ -15,6 +16,16 @@ class EmployeeGenericView(ListView):
     model = Employee
     paginate_by= 10
     context_object_name = 'employees'
+
+    def get_queryset(self):
+       result = super(EmployeeGenericView, self).get_queryset().order_by("-lastname")
+       query = self.request.GET.get('search')
+       if query:
+           searchName = Employee.objects.filter(Q(identification=query)| Q(lastname=query)).order_by("-lastname")
+           result = searchName
+       else:
+           result = Employee.objects.all()
+       return result
 
 class EmployeeCreateView(CreateView):
     model = Employee
@@ -43,10 +54,10 @@ class RequirementsGenericView(ListView):
     context_object_name = 'requirements'
 
     def get_queryset(self):
-       result = super(RequirementsGenericView, self).get_queryset()
+       result = super(RequirementsGenericView, self).get_queryset().order_by("-code")
        query = self.request.GET.get('search')
        if query:
-           searchName = Requirements.objects.filter(employee__lastname__contains=query).order_by("-date_requirement")
+           searchName = Requirements.objects.filter(Q(employee__lastname=query)|Q(code=query)).order_by("-code")
            result = searchName
        else:
            result = Requirements.objects.all()
@@ -179,6 +190,9 @@ class PenaltyGenericView(ListView):
     template_name= 'penalty/penalty_list.html'
     context_object_name = 'penalties'
 
+    def get_queryset(self):
+        return super().get_queryset().order_by('-requirement__code')
+
 class PenaltyCreateView(CreateView):
     model = Penalty
     template_name= 'penalty/penalty_form.html'
@@ -212,9 +226,6 @@ class ReportGenericView(ListView):
         employee = self.request.GET.get('employee')
         dateStart = self.request.GET.get('dateStart')
         dateEnd = self.request.GET.get('dateEnd')
-        print(employee)
-        print(dateStart)
-        print(dateEnd)
         if employee and dateStart and dateEnd:
             result = Penalty.objects.filter(requirement__employee__identification= employee, date__range=[dateStart, dateEnd])
         else:
@@ -224,4 +235,12 @@ class ReportGenericView(ListView):
     def get_context_data(self,**kwargs):
         context = super().get_context_data(**kwargs)
         context['employee']=Employee.objects.all()
+        
+        employee = self.request.GET.get('employee')
+        dateStart = self.request.GET.get('dateStart')
+        dateEnd = self.request.GET.get('dateEnd')
+        if employee and dateStart and dateEnd:
+            result = Penalty.objects.filter(requirement__employee__identification= employee, date__range=[dateStart, dateEnd]).aggregate(Sum('hours_penalty'))
+            context['total'] = result
+            print(context)
         return context
