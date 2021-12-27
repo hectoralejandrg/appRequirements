@@ -10,8 +10,9 @@
         <thead>
           <tr class="text-center">
             <th scope="col">Nombre</th>
-            <th scope="col">Descripcion</th>
-            <th scope="col">Penalizacion</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Cargo a vacaciones</th>
+            <th scope="col">Acción</th>
           </tr>
         </thead>
         <tbody>
@@ -19,7 +20,18 @@
           <tr class="text-center">
             <td>{{reason.name}}</td>
             <td>{{reason.description}}</td>
-            <td>{{reason.penalty}}</td>
+            <td>{{reason.penalty|yesno:"Si,No" }} </td>
+            <td class="d-flex justify-content-center">
+              <div class="me-1">
+                  <a class="btn btn-primary" href="{% url 'employee:update_reason' reason.id %}">
+                      <i class="fa fa-edit"></i>
+                  </a>
+              </div>
+              <div>
+                  <a class="btn btn-danger" href="{% url 'employee:detail_reason' reason.id %}"><i
+                          class="fa fa-trash" aria-hidden="true"></i></a>
+              </div>
+          </td>
         </tr>
         {% endfor %}
         </tbody>

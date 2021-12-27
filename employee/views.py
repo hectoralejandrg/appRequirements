@@ -4,6 +4,7 @@ from employee.forms import EmployeeForm, HolidayForm, JefaturaForm, LoginForm, P
 from django.contrib.auth.views import LoginView
 from employee.models import Employee, Jefatura, Penalty, Reason, Requirements, Holidays
 from django.db.models import Sum, Q
+from django.http import HttpResponseRedirect
 
 
 #Login
@@ -68,6 +69,15 @@ class RequirementsCreateView(CreateView):
     template_name= 'requirements/requirements_form.html'
     form_class = RequirementForm
     success_url= '/requirements/'
+
+    def form_valid(self, form):
+        print(form)
+        self.object = form.save()
+        requi =self.object
+        if requi.reason.penalty:
+            Penalty.objects.create(hours_penalty=requi.hours_discount, observations=requi.reason.name,date=requi.date_requirement, requirement=requi)
+        return HttpResponseRedirect(self.get_success_url())
+
 
 class RequirementsUpdateView(UpdateView):
     model = Requirements

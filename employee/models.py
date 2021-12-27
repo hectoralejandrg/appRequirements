@@ -1,5 +1,4 @@
 from django.db import models
-from django.db.models.base import Model
 import datetime
 
 class Jefatura(models.Model):
@@ -44,7 +43,7 @@ class Requirements(models.Model):
     date_requirement = models.DateField()
     date_start = models.DateTimeField()
     date_end = models.DateTimeField()
-    hours_discount = models.IntegerField()
+    hours_discount = models.IntegerField(null=False)
     employee = models.ForeignKey(
         Employee,
         related_name='employee',
@@ -101,4 +100,3 @@ class Penalty(models.Model):
     )
     def __str__(self):
         return f'{self.hours_penalty}'
-

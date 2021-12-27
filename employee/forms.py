@@ -41,7 +41,7 @@ class RequirementForm(forms.ModelForm):
 
     class Meta:
         model = Requirements
-        exclude = ('code',)
+        exclude = ('code','hours_discount',)
 
     # code = forms.CharField(
     #     label='Código', widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -51,8 +51,8 @@ class RequirementForm(forms.ModelForm):
         label='Inicio del Permiso', widget=forms.TextInput(attrs={'type': 'datetime-local', 'class': 'form-control'}))
     date_end = forms.CharField(
         label='Fin del Permiso', widget=forms.TextInput(attrs={'type': 'datetime-local', 'class': 'form-control'}))
-    hours_discount = forms.CharField(
-        label='Horas de permiso', widget=forms.TextInput(attrs={'type': 'number', 'class':'form-control'}))
+    # hours_discount = forms.CharField(
+    #     label='Horas de permiso', widget=forms.TextInput(attrs={'type': 'number', 'class':'form-control'}))
     employee = forms.ModelChoiceField(label='Empleado', empty_label='Seleccione', queryset=Employee.objects.all(), widget=forms.Select(attrs={'class':'form-select'}))
     reason = forms.ModelChoiceField(label='Razones', empty_label='Seleccione', queryset=Reason.objects.all(), widget=forms.Select(attrs={'class':'form-select'}))
 
@@ -66,6 +66,7 @@ class ReasonForm(forms.ModelForm):
         label='Nombre', widget=forms.TextInput(attrs={'class': 'form-control'}))
     description = forms.CharField(
         label='Descripcion', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    penalty = forms.CharField(label='Cargo a vacaciones?', widget=forms.CheckboxInput())
 
 
     ##Reason = forms.ModelChoiceField(label='Reason', empty_label='Seleccione', queryset=Reason.objects.all(), widget=forms.Select(attrs={'class':'form-select'}))
