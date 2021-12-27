@@ -110,6 +110,6 @@ class PenaltyForm(forms.ModelForm):
     label='Fecha', widget=forms.TextInput(attrs={'type': 'date' , 'class': 'form-control'}))
 
     observations = forms.CharField(
-        label='Nombre', widget=forms.TextInput(attrs={'class': 'form-control'}))
+        label='Observaciones', widget=forms.TextInput(attrs={'class': 'form-control'}))
 
-    requirement = forms.ModelChoiceField(label='Requirimientos', empty_label='Seleccione', queryset=Requirements.objects.all(), widget=forms.Select(attrs={'class':'form-select'}))
+    requirement = forms.ModelChoiceField(label='Requerimientos', empty_label='Seleccione', queryset=Requirements.objects.all().order_by("-code"), widget=forms.Select(attrs={'class':'form-select'}))
