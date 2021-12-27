@@ -7,7 +7,7 @@ app_name= 'employee'
 
 urlpatterns =[
     #Login
-    path('login/', Login.as_view(), name="login"),
+    path('', Login.as_view(), name="login"),
     path('logout/', auth_views.LogoutView.as_view(template_name='logout/logout.html'), name='logout'),
     #Employee
     path('employee/', login_required(EmployeeGenericView.as_view()), name="list_employee"),
@@ -22,6 +22,7 @@ urlpatterns =[
     path('requirements/<pk>/detail', login_required(RequirementsDetailView.as_view()), name='detail_requirements'),
     path('requirements/<pk>/delete', login_required(RequirementsDeleteView.as_view()), name='delete_requirements'),
     path('requirements/<pk>/report', login_required(MyDetailViewPDF.as_view()), name='report_requirements'),
+    # path('requirements/<pk>/report', login_required(DynamicNameView.as_view()), name='report_requirements'),
     #Reasons
     path('reason/', login_required(ReasonGenericView.as_view()), name="list_reason"),
     path('reason/new', login_required(ReasonCreateView.as_view()), name="new_reason"),
@@ -44,5 +45,10 @@ urlpatterns =[
     #Penalty
     path('penalty/', login_required(PenaltyGenericView.as_view()), name='list_penalty'),
     path('penalty/new', login_required(PenaltyCreateView.as_view()), name='new_penalty'),
+    path('penalty/<pk>/update', login_required(PenaltyUpdateView.as_view()), name='update_penalty'),
+    path('penalty/<pk>/detail', login_required(PenaltyDetailView.as_view()), name='detail_penalty'),
+    path('penalty/<pk>/delete', login_required(PenaltyDeleteView.as_view()), name='delete_penalty'),
+    #reportPenalty
+    path('report/', login_required(ReportGenericView.as_view()), name='list_report_penalty'),
 ]
 

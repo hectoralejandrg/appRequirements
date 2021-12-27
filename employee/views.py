@@ -1,18 +1,9 @@
-from django.core import paginator
 from django.views.generic import ListView, CreateView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView
 from employee.forms import EmployeeForm, HolidayForm, JefaturaForm, LoginForm, PenaltyForm, RequirementForm, ReasonForm
 from django.contrib.auth.views import LoginView
 from employee.models import Employee, Jefatura, Penalty, Reason, Requirements, Holidays
-from django.core.paginator import Paginator
-from django.http import Http404
 
-
-
-# import functools
-# from django.conf import settings
-# from django_weasyprint import WeasyTemplateResponseMixin
-# from django_weasyprint.views import WeasyTemplateResponse
 
 #Login
 class Login(LoginView):
@@ -170,7 +161,7 @@ class JefaturaDeleteView(DeleteView):
     template_name= 'jefatura/jefatura_form.html'
     success_url = '/jefatura/'
 
-#ReportPDF
+#ReportPDF requerimiento
 class MyDetailViewPDF(DetailView):
     # vanilla Django DetailView
     model = Requirements
@@ -181,12 +172,6 @@ class MyDetailViewPDF2(DetailView):
     # vanilla Django DetailView
     model = Holidays
     template_name = 'report/holidaysReport.html'
-
-# class DynamicNameView(WeasyTemplateResponseMixin, MyDetailViewPDF):
-#     # dynamically generate filename
-#     def get_pdf_filename(self):
-#         data=self.get_context_data()
-#         return f'report.pdf'
 
 class PenaltyGenericView(ListView):
     model = Penalty
@@ -200,3 +185,43 @@ class PenaltyCreateView(CreateView):
     form_class = PenaltyForm
     success_url= '/penalty/'
 
+class PenaltyUpdateView(UpdateView):
+    model = Penalty
+    template_name= 'penalty/penalty_form.html'
+    form_class = PenaltyForm
+    def get_success_url(self):
+        return '/penalty/'
+
+class PenaltyDetailView(DetailView):
+    model = Penalty
+    template_name= 'penalty/penalty_detail.html'
+
+class PenaltyDeleteView(DeleteView):
+    model = Penalty
+    template_name= 'penalty/penalty_form.html'
+    success_url = '/penalty/'
+
+#reportPenalty CRUD
+class ReportGenericView(ListView):
+    model = Penalty
+    template_name= 'report/report_list.html'
+    context_object_name = 'context'
+
+    def get_queryset(self):
+        result = super(ReportGenericView, self).get_queryset()
+        employee = self.request.GET.get('employee')
+        dateStart = self.request.GET.get('dateStart')
+        dateEnd = self.request.GET.get('dateEnd')
+        print(employee)
+        print(dateStart)
+        print(dateEnd)
+        if employee and dateStart and dateEnd:
+            result = Penalty.objects.filter(requirement__employee__identification= employee, date__range=[dateStart, dateEnd])
+        else:
+            result = None
+        return result
+
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context['employee']=Employee.objects.all()
+        return context

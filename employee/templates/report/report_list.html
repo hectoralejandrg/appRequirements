@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block logout %}
+<div id="print" class="container">
+    <div class="container pt-3 d-flex justify-content-between">
+        <a class="btn btn-secondary" href="{% url 'employee:list_requirements' %}">Regresar</a>
+
+        <button class="btn btn-success" onclick="print()"> <i class="fa fa-print" aria-hidden="true"></i> </button>
+    </div>
+</div>
+
+<div class="m-3">
+    <div id="print2" class="card">
+        <form method="GET" action="{% url 'employee:list_report_penalty' %}">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div>
+                    <label for="">Empleado</label>
+                    <input class="form-control" list="datalistOptions" name="employee" placeholder="Buscar por CI">
+                    <datalist id="datalistOptions">
+                        {% for employee in employee %}
+                        <option value={{employee.identification}}>{{employee.lastname}}
+                            {{employee.name}}</option>
+                        {% endfor %}
+                    </datalist>
+                </div>
+                <div>
+                    <label class="d-flex justify-content-between align-items-center" for="">Fecha Inicio</label>
+                    <input class="form-control" type="date" name="dateStart">
+                </div>
+                <div>
+                    <label class="d-flex justify-content-between align-items-center" for="">Fecha Fin</label>
+                    <input class="form-control" type="date" name="dateEnd">
+                </div>
+                <div>
+                    <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i> Buscar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="text-center">
+        <img src="../../static/img/gadlogo.png" alt="logo del gad">
+    </div>
+    <div class="text-center mt-5">
+        <h3>UNIDAD DE ADMINISTRACION DE TALENTO HUMANO</h3>
+        <h3>SOLICITUD DE REPORTES DE PENALIZACIONES POR EMPLEADO</h3>
+    </div>
+
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col">Código de Requerimiento</th>
+                    <th scope="col">CI</th>
+                    <th scope="col">Empleado</th>
+                    <th scope="col">Horas penalizadas</th>
+                    <th scope="col">Observación</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for penalty in context %}
+                <tr class="text-center">
+                    <td>{{penalty.requirement.code}}</td>
+                    <td>{{penalty.requirement.employee.identification}}</td>
+                    <td>{{penalty.requirement.employee.lastname}} {{penalty.requirement.employee.name}}</td>
+                    <td>{{penalty.hours_penalty}}</td>
+                    <td>{{penalty.observations}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="d-flex justify-content-between mt-5">
+            <div class="text-center">
+                <p>_____________________________</p>
+                <p> SOLICITANTE</p>
+                <p>{{object.employee.name}} {{object.employee.lastname}}</p>
+            </div>
+            <div class="text-center">
+                <p>_____________________________</p>
+                <p>VISTO BUENO DE JEFE INMEDIATO</p>
+            </div>
+            <div class="text-center">
+                <p>_____________________________</p>
+                <p>RECIBIDO Y CONTABILIZADO:</p>
+                <p>UNIDAD DE ADMINISTRACIÓN</p>
+                <p>DE TALENTO HUMANO</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script>
+    const hiddenPrint = () => {
+        const print = document.getElementById('print')
+        print.className += " visually-hidden"
+    }
+
+    const print = () => {
+        hiddenPrint();
+        window.print();
+    }
+</script>
+{% endblock %}
