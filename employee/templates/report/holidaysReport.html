@@ -2,6 +2,13 @@
 
 
 {% block logout %}
+<div id="print" class="container">
+    <div class="container mt-5 d-flex justify-content-between">
+        <a class="btn btn-secondary" href="{% url 'employee:list_holidays' %}">Regresar</a>
+
+        <button class="btn btn-success" onclick="print()" > <i class="fa fa-print" aria-hidden="true"></i> </button>
+    </div>
+</div>
 <div class="container mt-1">
     <div class="text-center">
         <img src="../../static/img/gadlogo.png" alt="logo del gad">
@@ -55,4 +62,23 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block js %}
+<script>
+    const hiddenPrint = () => {
+        const print = document.getElementById('print')
+        print.className += " visually-hidden"
+    }
+    
+    const print = () => {
+        hiddenPrint();
+        window.print();
+    }
+
+    window.onafterprint = function(event) {
+        const print = document.getElementById('print')
+        print.className = "container"
+    };
+</script>
 {% endblock %}
