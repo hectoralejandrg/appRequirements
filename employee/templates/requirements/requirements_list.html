@@ -13,10 +13,8 @@
 
             <form method="GET" action="{% url 'employee:list_requirements' %}">
                 <div class="input-group">
-                    <input type="text" class="form-control w-25" placeholder="Buscar" aria-label="Recipient's username"
-                        aria-describedby="button-addon2" name="search">
-                    <button class="btn btn-outline-primary" type="submit" id="button-addon2"><i class="fa fa-search"
-                            aria-hidden="true"></i></button>
+                    <input type="text" class="form-control m-0" placeholder="Buscar por Código o Apellido" name="search">
+                    <button class="btn btn-outline-primary btn-sm" type="submit"><i class="fa fa-search"></i></button>
                 </div>
             </form>
         </div>
@@ -54,10 +52,11 @@
                             <div class="me-1">
                                 <a class="btn btn-danger"
                                     href="{% url 'employee:detail_requirements' requirements.id %}"><i
-                                        class="fa fa-trash" aria-hidden="true"></i></a>
+                                        class="fa fa-trash"></i></a>
                             </div>
                             <div class="me-1">
-                                <a class="btn btn-success" href="{% url 'employee:report_requirements' requirements.id %}">
+                                <a class="btn btn-success"
+                                    href="{% url 'employee:report_requirements' requirements.id %}">
                                     <i class="fa fa-print" aria-hidden="true"></i></a>
                             </div>
                         </td>

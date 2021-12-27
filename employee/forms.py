@@ -75,7 +75,13 @@ class HolidayForm(forms.ModelForm):
     class Meta:
         model = Holidays
         fields = '__all__'
-
+    
+    date_requirement = forms.CharField(
+        label='Fecha del documento', widget=forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}))
+    days_current = forms.CharField(
+        label='Dias actuales de vacaciones', widget=forms.TextInput(attrs={'type': 'number', 'class':'form-control'}))
+    days_pending = forms.CharField(
+        label='Dias pendientes de  vacaciones', widget=forms.TextInput(attrs={'type': 'number', 'class':'form-control'}))
     date_start = forms.CharField(
         label='Dia de Inicio', widget=forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}))
     date_end = forms.CharField(
@@ -97,11 +103,13 @@ class PenaltyForm(forms.ModelForm):
     class Meta:
         model = Penalty
         fields = ('__all__')
-
     hours_penalty = forms.CharField(
         label='Horas a penalizar', widget=forms.TextInput(attrs={'type': 'number', 'class': 'form-control', 'list':'datalistOptions'}))
 
-    observations = forms.CharField(
-        label='Nombre', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    date = forms.CharField(
+    label='Fecha', widget=forms.TextInput(attrs={'type': 'date' , 'class': 'form-control'}))
 
-    requirement = forms.ModelChoiceField(label='Requirimientos', empty_label='Seleccione', queryset=Requirements.objects.all(), widget=forms.Select(attrs={'class':'form-select'}))
+    observations = forms.CharField(
+        label='Observaciones', widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+    requirement = forms.ModelChoiceField(label='Requerimientos', empty_label='Seleccione', queryset=Requirements.objects.all().order_by("-code"), widget=forms.Select(attrs={'class':'form-select'}))

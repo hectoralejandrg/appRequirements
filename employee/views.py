@@ -1,18 +1,10 @@
-from django.core import paginator
 from django.views.generic import ListView, CreateView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView
 from employee.forms import EmployeeForm, HolidayForm, JefaturaForm, LoginForm, PenaltyForm, RequirementForm, ReasonForm
 from django.contrib.auth.views import LoginView
 from employee.models import Employee, Jefatura, Penalty, Reason, Requirements, Holidays
-from django.core.paginator import Paginator
-from django.http import Http404
+from django.db.models import Sum, Q
 
-
-
-# import functools
-# from django.conf import settings
-# from django_weasyprint import WeasyTemplateResponseMixin
-# from django_weasyprint.views import WeasyTemplateResponse
 
 #Login
 class Login(LoginView):
@@ -24,6 +16,16 @@ class EmployeeGenericView(ListView):
     model = Employee
     paginate_by= 10
     context_object_name = 'employees'
+
+    def get_queryset(self):
+       result = super(EmployeeGenericView, self).get_queryset().order_by("-lastname")
+       query = self.request.GET.get('search')
+       if query:
+           searchName = Employee.objects.filter(Q(identification=query)| Q(lastname=query)).order_by("-lastname")
+           result = searchName
+       else:
+           result = Employee.objects.all()
+       return result
 
 class EmployeeCreateView(CreateView):
     model = Employee
@@ -52,10 +54,10 @@ class RequirementsGenericView(ListView):
     context_object_name = 'requirements'
 
     def get_queryset(self):
-       result = super(RequirementsGenericView, self).get_queryset()
+       result = super(RequirementsGenericView, self).get_queryset().order_by("-code")
        query = self.request.GET.get('search')
        if query:
-           searchName = Requirements.objects.filter(employee__lastname__contains=query).order_by("-date_requirement")
+           searchName = Requirements.objects.filter(Q(employee__lastname=query)|Q(code=query)).order_by("-code")
            result = searchName
        else:
            result = Requirements.objects.all()
@@ -170,7 +172,7 @@ class JefaturaDeleteView(DeleteView):
     template_name= 'jefatura/jefatura_form.html'
     success_url = '/jefatura/'
 
-#ReportPDF
+#ReportPDF requerimiento
 class MyDetailViewPDF(DetailView):
     # vanilla Django DetailView
     model = Requirements
@@ -182,17 +184,14 @@ class MyDetailViewPDF2(DetailView):
     model = Holidays
     template_name = 'report/holidaysReport.html'
 
-# class DynamicNameView(WeasyTemplateResponseMixin, MyDetailViewPDF):
-#     # dynamically generate filename
-#     def get_pdf_filename(self):
-#         data=self.get_context_data()
-#         return f'report.pdf'
-
 class PenaltyGenericView(ListView):
     model = Penalty
     paginate_by= 10
     template_name= 'penalty/penalty_list.html'
     context_object_name = 'penalties'
+
+    def get_queryset(self):
+        return super().get_queryset().order_by('-requirement__code')
 
 class PenaltyCreateView(CreateView):
     model = Penalty
@@ -200,3 +199,48 @@ class PenaltyCreateView(CreateView):
     form_class = PenaltyForm
     success_url= '/penalty/'
 
+class PenaltyUpdateView(UpdateView):
+    model = Penalty
+    template_name= 'penalty/penalty_form.html'
+    form_class = PenaltyForm
+    def get_success_url(self):
+        return '/penalty/'
+
+class PenaltyDetailView(DetailView):
+    model = Penalty
+    template_name= 'penalty/penalty_detail.html'
+
+class PenaltyDeleteView(DeleteView):
+    model = Penalty
+    template_name= 'penalty/penalty_form.html'
+    success_url = '/penalty/'
+
+#reportPenalty CRUD
+class ReportGenericView(ListView):
+    model = Penalty
+    template_name= 'report/report_list.html'
+    context_object_name = 'context'
+
+    def get_queryset(self):
+        result = super(ReportGenericView, self).get_queryset()
+        employee = self.request.GET.get('employee')
+        dateStart = self.request.GET.get('dateStart')
+        dateEnd = self.request.GET.get('dateEnd')
+        if employee and dateStart and dateEnd:
+            result = Penalty.objects.filter(requirement__employee__identification= employee, date__range=[dateStart, dateEnd])
+        else:
+            result = None
+        return result
+
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context['employee']=Employee.objects.all()
+        
+        employee = self.request.GET.get('employee')
+        dateStart = self.request.GET.get('dateStart')
+        dateEnd = self.request.GET.get('dateEnd')
+        if employee and dateStart and dateEnd:
+            result = Penalty.objects.filter(requirement__employee__identification= employee, date__range=[dateStart, dateEnd]).aggregate(Sum('hours_penalty'))
+            context['total'] = result
+            print(context)
+        return context
