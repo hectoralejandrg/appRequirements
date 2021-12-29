@@ -11,7 +11,7 @@
         <h5 class="card-title ms-2">Requerimientos</h5>
     </div>
     <div class="card-body">
-        <p>Esta seguro que desea eliminar el registro de <strong>{{ object.code}} {{ object.date_requirement }}</strong>?</p>
+        <p>Esta seguro que desea eliminar el registro <strong>{{ object.code }} de {{ object.employee.lastname }} {{ object.employee.name }}, {{ object.date_requirement }}</strong>?</p>
         <form method="post" action="{% url 'employee:delete_requirements' object.id %}">
             {% csrf_token %}
             <button class="btn btn-danger" type="submit">Eliminar</button>

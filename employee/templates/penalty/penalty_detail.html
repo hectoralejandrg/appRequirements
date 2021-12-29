@@ -11,7 +11,7 @@
         <h5 class="card-title ms-2">Penalizaciones</h5>
     </div>
     <div class="card-body">
-        <p>Esta seguro que desea eliminar esta penalizacion <strong>{{ object.employee.lastname  }} {{ object.employee.name }}</strong>?</p>
+        <p>Esta seguro que desea eliminar esta penalizacion<strong>{{ object.employee.lastname  }} {{ object.employee.name }}</strong>?</p>
         <form method="post" action="{% url 'employee:delete_penalty' object.id %}">
             {% csrf_token %}
             <button class="btn btn-danger" type="submit">Eliminar</button>
