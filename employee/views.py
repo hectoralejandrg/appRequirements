@@ -71,9 +71,19 @@ class RequirementsCreateView(CreateView):
     success_url= '/requirements/'
 
     def form_valid(self, form):
-        print(form)
-        self.object = form.save()
-        requi =self.object
+        self.object = form.save(commit=False)
+        requi = self.object
+        dateEnd = requi.date_end
+        dateStart = requi.date_start
+        dif = dateEnd-dateStart
+        minutes = dif.seconds / 60
+        hours = divmod(minutes, 60)
+        hd = hours[0]
+        if hours[1]>40:
+            hd = hd + 1
+        requi.hours_discount = int(hd)
+        requi.save()
+
         if requi.reason.penalty:
             Penalty.objects.create(hours_penalty=requi.hours_discount, observations=requi.reason.name,date=requi.date_requirement, requirement=requi)
         return HttpResponseRedirect(self.get_success_url())
