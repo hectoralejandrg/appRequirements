@@ -69,7 +69,7 @@ class Requirements(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'{self.code} - {self.employee.lastname} {self.employee.name}'
+        return f'{self.code} - {self.employee.lastname} {self.employee.name}- {self.date_requirement}'
 
 class Holidays(models.Model):
     date_requirement = models.DateField()

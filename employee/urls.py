@@ -50,5 +50,7 @@ urlpatterns =[
     path('penalty/<pk>/delete', login_required(PenaltyDeleteView.as_view()), name='delete_penalty'),
     #reportPenalty
     path('report/', login_required(ReportGenericView.as_view()), name='list_report_penalty'),
+    #reportEmployee
+    path('report/requirements', login_required(Report2GenericView.as_view()), name='list_report_permisos'),
 ]
 

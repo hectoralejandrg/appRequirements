@@ -264,3 +264,26 @@ class ReportGenericView(ListView):
             context['total'] = result
             print(context)
         return context
+
+#reportRequirements CRUD
+class Report2GenericView(ListView):
+    model = Requirements
+    template_name= 'report/reportPermiso_list.html'
+    context_object_name = 'context'
+
+    def get_queryset(self):
+        result = super(Report2GenericView, self).get_queryset()
+        employee = self.request.GET.get('employee')
+        dateStart = self.request.GET.get('dateStart')
+        dateEnd = self.request.GET.get('dateEnd')
+        if employee and dateStart and dateEnd:
+            result = Requirements.objects.filter(employee__identification= employee, date_requirement__range=[dateStart, dateEnd])
+        else:
+            result = None
+        return result
+
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context['employee']=Employee.objects.all()
+        
+        return context
