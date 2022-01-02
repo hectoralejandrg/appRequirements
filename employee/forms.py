@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from employee.models import Employee, Holidays, Jefatura, Penalty, Requirements, Reason
-
+from datetime import date, datetime
 
 class LoginForm(AuthenticationForm):
     class Meta:
@@ -43,6 +43,21 @@ class RequirementForm(forms.ModelForm):
         model = Requirements
         exclude = ('code','hours_discount',)
 
+    def clean(self):
+        super(RequirementForm, self).clean()
+        dateStart = datetime.fromisoformat(self.cleaned_data.get('date_start'))
+        dateEnd = datetime.fromisoformat(self.cleaned_data.get('date_end'))
+        dif = dateEnd - dateStart
+        minutes = dif.seconds / 60
+        hours = divmod(minutes, 60)
+        hd = hours[0]
+        if hours[1]>40:
+            hd = hd+1
+        if hd>8:
+            self.add_error('date_end', 'Campo: Fin del Permiso incorrecto. No se puede superar las 8 horas de permiso.')
+        if hd == 0:
+            self.add_error('date_end', 'Campo: Fin del Permiso incorrecto. Debe haber al menos 1 hora de diferencia.')
+
     # code = forms.CharField(
     #     label='Código', widget=forms.TextInput(attrs={'class': 'form-control'}))
     date_requirement = forms.CharField(
@@ -51,8 +66,6 @@ class RequirementForm(forms.ModelForm):
         label='Inicio del Permiso', widget=forms.TextInput(attrs={'type': 'datetime-local', 'class': 'form-control'}))
     date_end = forms.CharField(
         label='Fin del Permiso', widget=forms.TextInput(attrs={'type': 'datetime-local', 'class': 'form-control'}))
-    # hours_discount = forms.CharField(
-    #     label='Horas de permiso', widget=forms.TextInput(attrs={'type': 'number', 'class':'form-control'}))
     employee = forms.ModelChoiceField(label='Empleado', empty_label='Seleccione', queryset=Employee.objects.all(), widget=forms.Select(attrs={'class':'form-select'}))
     reason = forms.ModelChoiceField(label='Razones', empty_label='Seleccione', queryset=Reason.objects.all(), widget=forms.Select(attrs={'class':'form-select'}))
 

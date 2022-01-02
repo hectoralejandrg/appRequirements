@@ -43,7 +43,7 @@ class Requirements(models.Model):
     date_requirement = models.DateField()
     date_start = models.DateTimeField()
     date_end = models.DateTimeField()
-    hours_discount = models.IntegerField(null=False)
+    hours_discount = models.IntegerField(null=True, blank=True)
     employee = models.ForeignKey(
         Employee,
         related_name='employee',
