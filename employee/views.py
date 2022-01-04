@@ -5,6 +5,7 @@ from django.contrib.auth.views import LoginView
 from employee.models import Employee, Jefatura, Penalty, Reason, Requirements, Holidays
 from django.db.models import Sum, Q
 from django.http import HttpResponseRedirect
+import datetime
 
 
 #Login
@@ -141,11 +142,37 @@ class HolidaysGenericView(ListView):
     template_name= 'holidays/holidays_list.html'
     context_object_name = 'holidays'
 
+    def get_queryset(self):
+       result = super(HolidaysGenericView, self).get_queryset()
+       query = self.request.GET.get('search')
+       if query:
+           result = Holidays.objects.filter(Q(employee__identification=query)| Q(employee__lastname=query)).order_by("-date_requirement")
+       else:
+           result = Holidays.objects.all().order_by("-date_requirement")
+       return result
+
 class HolidaysCreateView(CreateView):
     model = Holidays
     template_name= 'holidays/holidays_form.html'
     form_class = HolidayForm 
     success_url= '/holidays/'
+
+    def get_context_data(self, **kwargs):
+        context = super(HolidaysCreateView, self).get_context_data(**kwargs)
+        context["employeeList"] = Employee.objects.all()
+        employeeSelect = self.request.GET.get('employeeSelect')
+        dateLastHolidays = self.request.GET.get('dateLastHolidays')
+        print(f'{dateLastHolidays} {employeeSelect}')
+        if employeeSelect and dateLastHolidays:
+            employee = Employee.objects.get(identification= employeeSelect)
+            totalHoursPenalty = Penalty.objects.filter(requirement__employee__identification= employeeSelect, date__range=[dateLastHolidays, datetime.datetime.now()]).aggregate(Sum('hours_penalty'))
+            hours_penalty = divmod(totalHoursPenalty["hours_penalty__sum"], 8)
+            print(hours_penalty)
+            days = hours_penalty[1]
+            hours = hours_penalty[0]
+            data = {'employee':employee, 'days': days, 'hours':hours}
+            context['data']= data
+        return context
 
 class HolidaysUpdateView(UpdateView):
     model = Holidays
@@ -262,7 +289,6 @@ class ReportGenericView(ListView):
         if employee and dateStart and dateEnd:
             result = Penalty.objects.filter(requirement__employee__identification= employee, date__range=[dateStart, dateEnd]).aggregate(Sum('hours_penalty'))
             context['total'] = result
-            print(context)
         return context
 
 #reportRequirements CRUD

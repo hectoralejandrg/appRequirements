@@ -1,10 +1,60 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
 {% block sidebar %}
 {% include 'sidebar.html' %}
 {% endblock %}
 
 {% block content %}
+<div class="m-3 me-5 ms-5">
+    <div class="card">
+        <div class="card-body">
+            <div class="container">
+                <form method="GET" action="{% url 'employee:new_holidays' %}">
+                    <div class="mb-3">
+                        <label for="form-label">Empleado</label>
+                        <input class="form-control" list="datalistEmployeeHolidays" name="employeeSelect"
+                            placeholder="Buscar por CI">
+                        <datalist id="datalistEmployeeHolidays">
+                            {% for e in employeeList %}
+                            <option value="{{e.identification}}">
+                                {{e.lastname}} {{e.name}}
+                            </option>
+                            {% endfor %}
+                        </datalist>
+                    </div>
+                    <div class="mb-3">
+                        <label for="form-label">Ultima fecha de vacaciones.</label>
+                        <input class="form-control" type="date" name="dateLastHolidays">
+                    </div>
+                    <button class="btn btn-dark" type="submit">Buscar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% if data %}
+<div class="m-3 me-5 ms-5">
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th rowspan="2">Empleado</th>
+            <th colspan="2">Total de horas de permiso</th>
+          </tr>
+          <tr>
+            <th>Días</th>
+            <th>Horas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{data.employee.lastname}} {{data.employee.name}}</td>
+            <td>{{data.days}}</td>
+            <td>{{data.hours}}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+{% endif %}
 <div class="card me-5 ms-5 mt-3 mb-3">
     <div class="card-header">
         <h5 class="card-title">Vacaciones</h5>
@@ -28,4 +78,3 @@
     </div>
 </div>
 {% endblock %}
-
