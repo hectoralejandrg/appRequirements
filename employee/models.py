@@ -72,12 +72,15 @@ class Requirements(models.Model):
         return f'{self.code} - {self.employee.lastname} {self.employee.name}- {self.date_requirement}'
 
 class Holidays(models.Model):
+    position = models.CharField(max_length=100)
     date_requirement = models.DateField()
+    date_job = models.DateField()
     date_start = models.DateField()
     date_end = models.DateField()
     days = models.IntegerField()
-    days_current = models.IntegerField()
     days_pending = models.IntegerField()
+    entry_work= models.DateField()
+    period= models.IntegerField()
 
     employee = models.ForeignKey(
         Employee,
@@ -86,7 +89,7 @@ class Holidays(models.Model):
         null=True
     )
     def __str__(self):
-        return f'{self.date_requirement}- {self.date_start}- {self.date_end} - {self.days} - {self.days_current} - {self.days_pending}'
+        return f'{self.position}- {self.date_requirement}- {self.date_job}- {self.date_start}- {self.date_end} - {self.days} - {self.days_pending} - {self.entry_work}- {self.period}'
 
 class Penalty(models.Model):
     hours_penalty = models.IntegerField()

@@ -18,13 +18,16 @@
                     <tr class="text-center">
                         <th scope="col">Empleado</th>
                         <th scope="col">CI</th>
-                        <th scope="col">Cargo/Jefatura</th>
+                        <th scope="col">Jefatura</th>
+                        <th scope="col">Cargo</th>
                         <th scope="col">Fecha del documento</th>
+                        <th scope="col">Fecha a oficio</th>
                         <th scope="col">Fecha de Inicio</th>
                         <th scope="col">Fecha de Fin</th>
                         <th scope="col">Dias de Vacaciones</th>
-                        <th scope="col">Dias actuales de Vacaciones</th>
                         <th scope="col">Dias pendientes de Vacaciones</th>
+                        <th scope="col">Entrada de Trabajo</th>
+                        <th scope="col">Periodo</th>
                         <th scope="col" class="text-center">Accion</th>
                     </tr>
                 </thead>
@@ -34,12 +37,15 @@
                         <td>{{holidays.employee.name}} {{holidays.employee.lastname}}</td>
                         <td>{{holidays.employee.identification}}</td>
                         <td>{{holidays.employee.jefatura.description}}</td>
+                        <td>{{holidays.position}}</td>
                         <td>{{holidays.date_requirement}}</td>
+                        <td>{{holidays.date_job}}</td>
                         <td>{{holidays.date_start}}</td>
                         <td>{{holidays.date_end}}</td>
                         <td>{{holidays.days}}</td>
-                        <td>{{holidays.days_current}}</td>
                         <td>{{holidays.days_pending}}</td>
+                        <td>{{holidays.entry_work}}</td>
+                        <td>{{holidays.period}}</td>
                         
                         <td class="d-flex justify-content-center">
                             <div class="me-1">
