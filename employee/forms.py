@@ -88,26 +88,30 @@ class HolidayForm(forms.ModelForm):
 
     class Meta:
         model = Holidays
-        fields = '__all__'
+        exclude = ('date_end','entry_work','days_pending','days_penalty',)
+
+    date_last_holidays = forms.CharField(
+        label='Fecha del ultimo dia de vacaciones anterior', widget=forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}))
+    employee = forms.ModelChoiceField(label='Empleado', empty_label='Seleccione', queryset=Employee.objects.all(), widget=forms.Select(attrs={'class':'form-select'}))
     position = forms.CharField(
         label='Cargo', widget=forms.TextInput(attrs={'class': 'form-control'}))
     date_requirement = forms.CharField(
         label='Fecha del documento', widget=forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}))
     date_job = forms.CharField(
         label='Fecha a oficio', widget=forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}))
-    days_pending = forms.CharField(
-        label='Dias pendientes de  vacaciones', widget=forms.TextInput(attrs={'type': 'number', 'class':'form-control'}))
     date_start = forms.CharField(
         label='Dia de Inicio', widget=forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}))
-    date_end = forms.CharField(
-        label='Dia de Fin', widget=forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}))
+    days_total = forms.CharField(
+        label='Días de vacaciones asignadas', widget=forms.TextInput(attrs={'type': 'number', 'class':'form-control'}))
     days = forms.CharField(
-        label='Dias de vacaciones', widget=forms.TextInput(attrs={'type': 'number', 'class':'form-control'}))
-    entry_work = forms.CharField(
-        label='Entrada de trabajo', widget=forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}))
+        label='Dias de vacaciones solicitadas', widget=forms.TextInput(attrs={'type': 'number', 'class':'form-control'}))
+    # date_end = forms.CharField(
+    #     label='Dia de Fin', widget=forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}))
+    # entry_work = forms.CharField(
+    #     label='Entrada de trabajo', widget=forms.TextInput(attrs={'type': 'date', 'class': 'form-control'}))
     period = forms.CharField(
-        label='Periodo', widget=forms.TextInput(attrs={'type': 'number', 'class':'form-control'}))
-    employee = forms.ModelChoiceField(label='Empleado', empty_label='Seleccione', queryset=Employee.objects.all(), widget=forms.Select(attrs={'class':'form-select'}))
+        label='Periodo', widget=forms.TextInput(attrs={'type': 'text', 'class':'form-control'}))
+    
 
 class JefaturaForm(forms.ModelForm):
 

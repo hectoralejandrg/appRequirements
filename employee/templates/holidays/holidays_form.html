@@ -71,6 +71,7 @@
             </div>
 
             {% endfor %}
+            <input class="visually-hidden" type="text" value="{{data.days}}" name="days_penalty">
 
             <button type="submit" class="btn btn-primary">Guardar</button>
             <a href="{% url 'employee:list_holidays' %}" class="btn btn-secondary">Regresar</a>

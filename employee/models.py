@@ -72,22 +72,24 @@ class Requirements(models.Model):
         return f'{self.code} - {self.employee.lastname} {self.employee.name}- {self.date_requirement}'
 
 class Holidays(models.Model):
-    position = models.CharField(max_length=100)
-    date_requirement = models.DateField()
-    date_job = models.DateField()
-    date_start = models.DateField()
-    date_end = models.DateField()
-    days = models.IntegerField()
-    days_pending = models.IntegerField()
-    entry_work= models.DateField()
-    period= models.IntegerField()
-
     employee = models.ForeignKey(
         Employee,
         related_name='employeeHolidays',
         on_delete=models.SET_NULL,
         null=True
     )
+    position = models.CharField(max_length=100)
+    date_last_holidays = models.DateField(null=True, blank=True)
+    date_requirement = models.DateField()
+    date_job = models.DateField()
+    date_start = models.DateField()
+    date_end = models.DateField(null=True, blank=True)
+    days = models.IntegerField()
+    days_pending = models.IntegerField(null=True, blank=True)
+    entry_work= models.DateField(null=True, blank=True)
+    days_total= models.IntegerField()
+    days_penalty = models.IntegerField(null=True, blank=True)
+    period= models.CharField(max_length=100)
     def __str__(self):
         return f'{self.position}- {self.date_requirement}- {self.date_job}- {self.date_start}- {self.date_end} - {self.days} - {self.days_pending} - {self.entry_work}- {self.period}'
 

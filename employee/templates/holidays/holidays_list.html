@@ -26,13 +26,15 @@
                         <th scope="col">CI</th>
                         <th scope="col">Jefatura</th>
                         <th scope="col">Cargo</th>
+                        <th scope="col">Ultima fecha de vacaciones anterior</th>
                         <th scope="col">Fecha del documento</th>
                         <th scope="col">Fecha a oficio</th>
                         <th scope="col">Fecha de Inicio</th>
                         <th scope="col">Fecha de Fin</th>
-                        <th scope="col">Dias de Vacaciones</th>
-                        <th scope="col">Dias pendientes de Vacaciones</th>
-                        <th scope="col">Entrada de Trabajo</th>
+                        <th scope="col">Entrada al Trabajo</th>
+                        <th scope="col">Días de Vacaciones Solicitadas</th>
+                        <th scope="col">Días pendientes de Vacaciones</th>
+                        <th scope="col">Días descontados</th>
                         <th scope="col">Periodo</th>
                         <th scope="col" class="text-center">Acción</th>
                     </tr>
@@ -44,22 +46,24 @@
                         <td>{{holidays.employee.identification}}</td>
                         <td>{{holidays.employee.jefatura.description}}</td>
                         <td>{{holidays.position}}</td>
+                        <td>{{holidays.date_last_holidays}}</td>
                         <td>{{holidays.date_requirement}}</td>
                         <td>{{holidays.date_job}}</td>
                         <td>{{holidays.date_start}}</td>
                         <td>{{holidays.date_end}}</td>
+                        <td>{{holidays.entry_work}}</td>
                         <td>{{holidays.days}}</td>
                         <td>{{holidays.days_pending}}</td>
-                        <td>{{holidays.entry_work}}</td>
+                        <td>{{holidays.days_penalty}}</td>
                         <td>{{holidays.period}}</td>
                         
-                        <td class="d-flex justify-content-center">
-                            <div class="me-1">
+                        <td class="d-flex justify-content-center flex-column">
+                            <div class="mb-1">
                                 <a class="btn btn-primary" href="{% url 'employee:update_holidays' holidays.id %}">
                                     <i class="fa fa-edit"></i>
                                 </a>
                             </div>
-                            <div class="me-1">
+                            <div class="mb-1">
                                 <a class="btn btn-danger" href="{% url 'employee:detail_holidays' holidays.id %}"><i
                                         class="fa fa-trash" aria-hidden="true"></i></a>
                             </div>

@@ -162,17 +162,32 @@ class HolidaysCreateView(CreateView):
         context["employeeList"] = Employee.objects.all()
         employeeSelect = self.request.GET.get('employeeSelect')
         dateLastHolidays = self.request.GET.get('dateLastHolidays')
-        print(f'{dateLastHolidays} {employeeSelect}')
         if employeeSelect and dateLastHolidays:
             employee = Employee.objects.get(identification= employeeSelect)
             totalHoursPenalty = Penalty.objects.filter(requirement__employee__identification= employeeSelect, date__range=[dateLastHolidays, datetime.datetime.now()]).aggregate(Sum('hours_penalty'))
-            hours_penalty = divmod(totalHoursPenalty["hours_penalty__sum"], 8)
-            print(hours_penalty)
-            days = hours_penalty[1]
-            hours = hours_penalty[0]
+            try:
+                hours_penalty = divmod(totalHoursPenalty["hours_penalty__sum"], 8)
+                days = hours_penalty[0]
+                hours = hours_penalty[1]
+            except:
+                days = 0
+                hours = 0
             data = {'employee':employee, 'days': days, 'hours':hours}
             context['data']= data
         return context
+    
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        holiday = self.object
+        totalHoursPenalty = Penalty.objects.filter(requirement__employee__identification= holiday.employee.identification, date__range=[holiday.date_last_holidays, datetime.datetime.now()]).aggregate(Sum('hours_penalty'))
+        hours_penalty = divmod(totalHoursPenalty["hours_penalty__sum"], 8)
+        print(f'********{hours_penalty}')
+        holiday.days_penalty = hours_penalty[0]
+        holiday.days_pending =  holiday.days_total - (hours_penalty[0]+ (holiday.days-1))
+        holiday.date_end = holiday.date_start + datetime.timedelta(days=holiday.days-1) - datetime.timedelta(days=hours_penalty[0])
+        holiday.entry_work = holiday.date_end + datetime.timedelta(days=1)
+        holiday.save()
+        return HttpResponseRedirect(self.get_success_url())
 
 class HolidaysUpdateView(UpdateView):
     model = Holidays
