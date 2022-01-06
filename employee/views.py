@@ -246,6 +246,12 @@ class MyDetailViewPDF2(DetailView):
     model = Holidays
     template_name = 'report/holidaysReport.html'
 
+    def get_context_data(self, **kwargs):
+        object = super().get_context_data(**kwargs)
+        object['date_diff'] = object['object'].days - object['object'].days_penalty
+        # object['date_dif']= self.request.GET.get('days')-self.request.GET.get('days_penalty')
+        return object
+
 class PenaltyGenericView(ListView):
     model = Penalty
     paginate_by= 10
