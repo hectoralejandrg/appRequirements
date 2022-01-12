@@ -23,7 +23,7 @@ class EmployeeGenericView(ListView):
        result = super(EmployeeGenericView, self).get_queryset().order_by("-lastname")
        query = self.request.GET.get('search')
        if query:
-           searchName = Employee.objects.filter(Q(identification=query)| Q(lastname=query)).order_by("-lastname")
+           searchName = Employee.objects.filter(Q(identification__icontains=query)| Q(lastname__icontains=query)).order_by("-lastname")
            result = searchName
        else:
            result = Employee.objects.all()
@@ -146,7 +146,7 @@ class HolidaysGenericView(ListView):
        result = super(HolidaysGenericView, self).get_queryset()
        query = self.request.GET.get('search')
        if query:
-           result = Holidays.objects.filter(Q(employee__identification=query)| Q(employee__lastname=query)).order_by("-date_requirement")
+           result = Holidays.objects.filter(Q(employee__identification__icontains=query)| Q(employee__lastname__icontains=query)).order_by("-date_requirement")
        else:
            result = Holidays.objects.all().order_by("-date_requirement")
        return result
@@ -211,6 +211,16 @@ class JefaturaGenericView(ListView):
     paginate_by= 10
     template_name= 'jefatura/jefatura_list.html'
     context_object_name = 'jefaturas'
+
+    def get_queryset(self):
+       result = super(JefaturaGenericView, self).get_queryset()
+       query = self.request.GET.get('search')
+       if query:
+           searchName = Jefatura.objects.filter(Q(description__icontains=query))
+           result = searchName
+       else:
+           result = Jefatura.objects.all()
+       return result
 
 class JefaturaCreateView(CreateView):
     model = Jefatura
