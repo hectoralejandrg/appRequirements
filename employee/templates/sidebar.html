@@ -11,8 +11,13 @@
       </a>
     </li>
     <li>
+      <a href="{% url 'employee:list_holidays' %}" class="nav-link text-white btn-outline-primary">
+        Solicitud de Vacaciones
+      </a>
+    </li>
+    <li>
       <a href="{% url 'employee:list_penalty' %}" class="nav-link text-white btn-outline-primary">
-        Penalizaciones
+        Horas contabilizadas
       </a>
     </li>
     <li class="nav-item">
@@ -21,23 +26,18 @@
       </a>
     </li>
     <li>
-      <a href="{% url 'employee:list_holidays' %}" class="nav-link text-white btn-outline-primary">
-        Solicitud de Vacaciones
-      </a>
-    </li>
-    <li>
       <a href="{% url 'employee:list_jefatura' %}" class="nav-link text-white btn-outline-primary">
-        Cargo/Jefatura
+        Registro de Cargo/Jefatura
       </a>
     </li>
     <li>
       <a href="{% url 'employee:list_reason' %}" class="nav-link text-white btn-outline-primary">
-        Motivos de permiso
+        Registro de Motivos
       </a>
     </li>
     <li>
       <a href="{% url 'employee:list_report_penalty' %}" class="nav-link text-white btn-outline-primary">
-        Reportes de Penalizaciones
+        Reportes de Horas Contabilizadas
       </a>
     </li>
     <li>

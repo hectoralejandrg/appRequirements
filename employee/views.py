@@ -148,7 +148,7 @@ class HolidaysGenericView(ListView):
        if query:
            result = Holidays.objects.filter(Q(employee__identification__icontains=query)| Q(employee__lastname__icontains=query)).order_by("-date_requirement")
        else:
-           result = Holidays.objects.all().order_by("-date_requirement")
+           result = Holidays.objects.all().order_by("-date_job")
        return result
 
 class HolidaysCreateView(CreateView):
@@ -183,8 +183,16 @@ class HolidaysCreateView(CreateView):
         hours_penalty = divmod(totalHoursPenalty["hours_penalty__sum"], 8)
         print(f'********{hours_penalty}')
         holiday.days_penalty = hours_penalty[0]
-        holiday.days_pending =  holiday.days_total - (hours_penalty[0]+ (holiday.days-1))
-        holiday.date_end = holiday.date_start + datetime.timedelta(days=holiday.days-1) - datetime.timedelta(days=hours_penalty[0])
+        day_solicitados = holiday.days + hours_penalty[0]
+        if holiday.days_total - day_solicitados >= 0:
+            holiday.days_take = day_solicitados
+            holiday.days_pending =  holiday.days_total - holiday.days_take
+            holiday.date_end = holiday.date_start + datetime.timedelta(days=holiday.days-1)
+        else:
+            holiday.days_take = holiday.days - hours_penalty[0]
+            holiday.days_pending =  holiday.days_total - holiday.days
+            holiday.date_end = holiday.date_start + datetime.timedelta(days=holiday.days-1) - datetime.timedelta(days=hours_penalty[0])
+
         holiday.entry_work = holiday.date_end + datetime.timedelta(days=1)
         holiday.save()
         return HttpResponseRedirect(self.get_success_url())
@@ -258,7 +266,8 @@ class MyDetailViewPDF2(DetailView):
 
     def get_context_data(self, **kwargs):
         object = super().get_context_data(**kwargs)
-        object['date_diff'] = object['object'].days - object['object'].days_penalty
+        date_diff = object['object'].date_end - object['object'].date_start
+        object['date_diff'] = date_diff.days + 1
         # object['date_dif']= self.request.GET.get('days')-self.request.GET.get('days_penalty')
         return object
 

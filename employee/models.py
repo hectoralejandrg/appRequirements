@@ -80,7 +80,7 @@ class Holidays(models.Model):
     )
     position = models.CharField(max_length=100)
     date_last_holidays = models.DateField(null=True, blank=True)
-    date_requirement = models.DateField()
+    # date_requirement = models.DateField()
     date_job = models.DateField()
     date_start = models.DateField()
     date_end = models.DateField(null=True, blank=True)
@@ -88,6 +88,7 @@ class Holidays(models.Model):
     days_pending = models.IntegerField(null=True, blank=True)
     entry_work= models.DateField(null=True, blank=True)
     days_total= models.IntegerField()
+    days_take = models.IntegerField(default=0)
     days_penalty = models.IntegerField(null=True, blank=True)
     period= models.CharField(max_length=100)
     def __str__(self):

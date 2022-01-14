@@ -16,18 +16,21 @@
 
     <div>
         <br><p style="text-align: right" class="fs-7 "><strong>Memorando No. GADMCSL-UATH-2021-473-M</strong></p>
-        <p style="text-align: right" class="fs-7 ">Santa Lucia, <td>{{object.date_requirement}}</td> </p><br>
+        <p style="text-align: right" class="fs-7 ">Santa Lucia, <td>{{object.date_job}}</td> </p><br>
     </div>
 
     <div>
-        <p style="text-align: left" class="fs-7 "><strong>Para:ㅤㅤㅤ</strong>{{object.employee.name}} {{object.employee.lastname}} <br>ㅤㅤㅤㅤㅤ<strong> <td>{{object.position}}</td></strong> </p>
-        <p style="text-align: left" class="fs-7 "><strong>Asunto:ㅤㅤ</strong>Constancia de Vacaciones.</p><br>  
+        <p style="text-align: left" class="fs-7"><strong>Para:ㅤㅤㅤ</strong>{{object.employee.name}} {{object.employee.lastname}} <br>ㅤㅤㅤㅤㅤ<strong> <td>{{object.position}}</td></strong> </p>
+        <p style="text-align: left" class="fs-7"><strong>Asunto:ㅤㅤ</strong>Constancia de Vacaciones.</p><br>  
     </div>
 
 
     <div> 
-        <p style="text-align: justify">En atención a su OFICIO S/N de fecha <td>{{object.date_job}}</td> referente a su solicitud de vacaciones y de conformidad con lo dispuesto según en la Ley Orgánica de Servicio Publico según el <i>"art 29.- Vacaciones y permisos";</i> el mismo que se encuentra AUTORIZADO por su Jefe Directo. Por lo indicado, la Unidad de Talento Humano y Servicios Generales le autoriza sus respectivas vacaciones. desde <td>{{object.date_start}}</td> al <td>{{object.date_end}}</td> <strong>(<td>{{date_diff}}</td> DIAS)</strong>, así mismo su integración a sus funciones de trabajo será el día <td>{{object.entry_work}}</td>.</p>
-        <p style="text-align: justify">Cabe manifestar que esta Jefatura realizó la contabilización respectiva con su último permiso y usted cuenta con <strong><td>{{object.days_pending}}</td> días</strong> de vacaciones pendientes del periodo <td>{{object.period}}</td>.</p><br>
+        <p style="text-align: justify">En atención a su OFICIO S/N de fecha <td>{{object.date_job}}</td> referente a su solicitud de vacaciones y de conformidad con lo dispuesto según en la Ley Orgánica de Servicio Publico según el <i>"art 29.- Vacaciones y permisos";</i> el mismo que se encuentra AUTORIZADO por su Jefe Directo. Por lo indicado, la Unidad de Talento Humano y Servicios Generales le autoriza sus respectivas vacaciones. desde <td>{{object.date_start}}</td> al <td>{{object.date_end}}</td> <strong>(<td>{{date_diff}}</td> DÍAS)</strong>, así mismo su integración a sus funciones de trabajo será el día <td>{{object.entry_work}}</td>.</p>
+        <!-- {% if object.days_pending > 0 %} -->
+        <!-- <p style="text-align: justify">Cabe manifestar que esta Jefatura realizó la contabilización respectiva con su último permiso y usted cuenta con <strong><td>{{object.days_pending}}</td> DÍAS</strong> de vacaciones pendientes del periodo <td>{{object.period}}</td>.</p> -->
+        <p style="text-align: justify">Cabe manifestar que esta Jefatura realizó la contabilización de los permisos en el presente periodo: <strong>({{object.days_penalty}} DÍAS)</strong>, por lo tanto usted cuenta con <strong>({{object.days_pending}} DÍAS)</strong> de vacaciones pendientes del periodo <td>{{object.period}}</td>.</p>
+        <!-- {% endif %} -->
     </div>
 
     <div>
