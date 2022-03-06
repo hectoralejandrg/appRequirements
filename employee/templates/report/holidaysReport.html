@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+
+{% block logout %}
+<div id="print" class="container">
+    <div class="container mt-5 d-flex justify-content-between">
+        <a class="btn btn-secondary" href="{% url 'employee:list_holidays' %}">Regresar</a>
+
+        <button class="btn btn-success" onclick="print()" > <i class="fa fa-print" aria-hidden="true"></i> </button>
+    </div>
+</div>
+<div class="container mt-1">
+    <div class="text-center">
+        <img src="../../static/img/gadlogo.png" alt="logo del gad" width="126px" height="100px">
+    </div>
+
+    <div>
+        <br><p style="text-align: right" class="fs-7 "><strong>Memorando No. GADMCSL-UATH-2021-473-M</strong></p>
+        <p style="text-align: right" class="fs-7 ">Santa Lucia, <td>{{object.date_job}}</td> </p><br>
+    </div>
+
+    <div>
+        <p style="text-align: left" class="fs-7"><strong>Para:ㅤㅤㅤ</strong>{{object.employee.name}} {{object.employee.lastname}} <br>ㅤㅤㅤㅤㅤ<strong> <td>{{object.position}}</td></strong> </p>
+        <p style="text-align: left" class="fs-7"><strong>Asunto:ㅤㅤ</strong>Constancia de Vacaciones.</p><br>  
+    </div>
+
+
+    <div> 
+        <p style="text-align: justify">En atención a su OFICIO S/N de fecha <td>{{object.date_job}}</td> referente a su solicitud de vacaciones y de conformidad con lo dispuesto según en la Ley Orgánica de Servicio Publico según el <i>"art 29.- Vacaciones y permisos";</i> el mismo que se encuentra AUTORIZADO por su Jefe Directo. Por lo indicado, la Unidad de Talento Humano y Servicios Generales le autoriza sus respectivas vacaciones. desde <td>{{object.date_start}}</td> al <td>{{object.date_end}}</td> <strong>(<td>{{date_diff}}</td> DÍAS)</strong>, así mismo su integración a sus funciones de trabajo será el día <td>{{object.entry_work}}</td>.</p>
+        <!-- {% if object.days_pending > 0 %} -->
+        <!-- <p style="text-align: justify">Cabe manifestar que esta Jefatura realizó la contabilización respectiva con su último permiso y usted cuenta con <strong><td>{{object.days_pending}}</td> DÍAS</strong> de vacaciones pendientes del periodo <td>{{object.period}}</td>.</p> -->
+        <p style="text-align: justify">Cabe manifestar que esta Jefatura realizó la contabilización de los permisos en el presente periodo: <strong>({{object.days_penalty}} DÍAS)</strong>, por lo tanto usted cuenta con <strong>({{object.days_pending}} DÍAS)</strong> de vacaciones pendientes del periodo <td>{{object.period}}</td>.</p>
+        <!-- {% endif %} -->
+    </div>
+
+    <div>
+        <p class="fs-10 me-1"><strong>Atentamente,</strong> </p><br><br>
+        <p class="fs-10 me-1">Ing. Mónica Guilcazo Parra<br><strong>JEFE DE LA UNIDAD DE ADMINISTRACIÓN DE TALENTO<br> HUMANO Y SERVICIOS GENERALES <br> </strong></p>
+    </div>
+
+    <div >
+        <br><p style="text-align: left" class="fs-9 "><u>ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ</u> <br><strong>F.Servidor Publico</strong> <br> MCGP/VRAS</p>
+    </div>
+
+    <div>
+        <p style="text-align: right"><strong><u> Administración 2019-2023</u> <br>Calles Nicolás Martínez y Antonio Sa <br>Teléfono: (04) 2709175 <br>Email: municipiosta@gadsantalucia.gob.ec <br>www.gadsantalucia.gob.ec </strong> </p>
+    </div>
+    
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+    const hiddenPrint = () => {
+        const print = document.getElementById('print')
+        print.className += " visually-hidden"
+    }
+    
+    const print = () => {
+        hiddenPrint();
+        window.print();
+    }
+
+    window.onafterprint = function(event) {
+        const print = document.getElementById('print')
+        print.className = "container"
+    };
+</script>
+{% endblock %}

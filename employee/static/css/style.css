@@ -1,0 +1,37 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.grid-home {
+  display: grid;
+  grid-template-columns: 25% auto;
+  grid-template-rows: max-content;
+  grid-template-areas: 
+  "sidebar main"
+}
+
+.sidebar{
+  grid-area: sidebar;
+  position: fixed;
+}
+.main{
+  grid-area: main;
+}
+
+label {
+  display: block;
+  font: 1rem 'Fira Sans', sans-serif;
+}
+
+input,
+label {
+  margin: .4rem 0;
+}
+
+@media print {
+  .header-print{
+    visibility: hidden;
+  }
+}

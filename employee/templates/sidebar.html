@@ -1,0 +1,53 @@
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark w-25 vh-100 position-fixed">
+  <a href="{% url 'employee:list_reason' %}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+    <label class="fs-4">ALCALDIA DE SANTA LUCIA</label>
+  </a>
+  <!-- nav-link active" aria-current="page" -->
+  <hr>
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li>
+      <a href="{% url 'employee:list_requirements' %}" class="nav-link text-white btn-outline-primary">
+        Solicitud de Permisos
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'employee:list_holidays' %}" class="nav-link text-white btn-outline-primary">
+        Solicitud de Vacaciones
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'employee:list_penalty' %}" class="nav-link text-white btn-outline-primary">
+        Horas contabilizadas
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="{% url 'employee:list_employee' %}" class="nav-link text-white btn-outline-primary">
+        Registro de Empleados
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'employee:list_jefatura' %}" class="nav-link text-white btn-outline-primary">
+        Registro de Cargo/Jefatura
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'employee:list_reason' %}" class="nav-link text-white btn-outline-primary">
+        Registro de Motivos
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'employee:list_report_penalty' %}" class="nav-link text-white btn-outline-primary">
+        Reportes de Horas Contabilizadas
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'employee:list_report_permisos' %}" class="nav-link text-white btn-outline-primary">
+        Reportes de Permisos
+      </a>
+    </li>
+  </ul>
+  <hr>
+  <div>
+    <a class="btn btn-danger w-100" href="{% url 'employee:logout' %}">Cerrar Sesion</a>
+  </div>
+</div>

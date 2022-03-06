@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+{% block logout %}
+<div id="print" class="container">
+    <div class="container pt-3 d-flex justify-content-between">
+        <a class="btn btn-secondary" href="{% url 'employee:list_requirements' %}">Regresar</a>
+
+        <button class="btn btn-success" onclick="print()"> <i class="fa fa-print" aria-hidden="true"></i> </button>
+    </div>
+</div>
+
+<div class="m-3">
+    <div id="card" class="card">
+        <form method="GET" action="{% url 'employee:list_report_penalty' %}">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div>
+                    <label for="">Empleado</label>
+                    <input class="form-control" list="datalistOptions" name="employee" placeholder="Buscar por CI">
+                    <datalist id="datalistOptions">
+                        {% for employee in employee %}
+                        <option value={{employee.identification}}>{{employee.lastname}}
+                            {{employee.name}}</option>
+                        {% endfor %}
+                    </datalist>
+                </div>
+                <div>
+                    <label class="d-flex justify-content-between align-items-center" for="">Fecha Inicio</label>
+                    <input class="form-control" type="date" name="dateStart">
+                </div>
+                <div>
+                    <label class="d-flex justify-content-between align-items-center" for="">Fecha Fin</label>
+                    <input class="form-control" type="date" name="dateEnd">
+                </div>
+                <div>
+                    <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i> Buscar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="title" class="visually-hidden">
+        <div class="text-center">
+            <img src="../../static/img/gadlogo.png" alt="logo del gad" width="126px" height="100px">
+        </div>
+        <div class="text-center mt-2">
+            <h5>UNIDAD DE ADMINISTRACION DE TALENTO HUMANO</h5>
+            <h5>SOLICITUD DE REPORTES DE PENALIZACIONES POR EMPLEADO</h5>
+        </div>
+    </div>
+
+    <div class="mt-2">
+        <table class="table table-bordered">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col">Código de Requerimiento</th>
+                    <th scope="col">CI</th>
+                    <th scope="col">Empleado</th>
+                    <th scope="col">Observación</th>
+                    <th scope="col">Horas penalizadas</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for penalty in context %}
+                <tr class="text-center">
+                    <td>{{penalty.requirement.code}}</td>
+                    <td>{{penalty.requirement.employee.identification}}</td>
+                    <td>{{penalty.requirement.employee.lastname}} {{penalty.requirement.employee.name}}</td>
+                    <td>{{penalty.observations}}</td>
+                    <td>{{penalty.hours_penalty}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="text-end fw-bold">Total</td>
+                    <td class="text-center fw-bold">{{total.hours_penalty__sum}}</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div id="footer" class="visually-hidden">
+            <div class="d-flex justify-content-between mt-5">
+                <div class="text-center">
+                    <p>_____________________________</p>
+                    <p>SOLICITANTE</p>
+                    <p>{{penalty.requirement.employee.lastname}} {{penalty.requirement.employee.name}}</p>
+                </div>
+                <div class="text-center">
+                    <p>_____________________________</p>
+                    <p>RECIBIDO Y CONTABILIZADO</p>
+                    <p>UNIDAD DE ADMINISTRACIÓN</p>
+                    <p>DE TALENTO HUMANO</p>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mt-2">
+                <div class="text-center">
+                    <p>_____________________________</p>
+                    <p>VISTO BUENO DE JEFE INMEDIATO</p>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script>
+    const hiddenPrint = () => {
+        const print = document.getElementById('print');
+        const card = document.getElementById('card');
+        const title = document.getElementById('title');
+        const footer = document.getElementById('footer');
+        print.className += " visually-hidden";
+        card.className += " visually-hidden";
+        title.className = "";
+        footer.className = "";
+    }
+
+    const print = () => {
+        hiddenPrint();
+        window.print();
+    }
+
+    window.onafterprint = function(event) {
+        const print = document.getElementById('print');
+        const card = document.getElementById('card');
+        const title = document.getElementById('title');
+        const footer = document.getElementById('footer');
+        print.className = "container";
+        card.className = "card";
+        title.className = "visually-hidden";
+        footer.className = "visually-hidden";
+    };
+</script>
+{% endblock %}

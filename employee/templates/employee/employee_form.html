@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block sidebar %}
+{% include 'sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="card me-5 ms-5 mt-3 mb-3">
+    <div class="card-header">
+        <h5 class="card-title">Empleados</h5>
+    </div>
+    <div class="card-body">
+        <form method="post"> {% csrf_token %}
+            {% for field in form.visible_fields %}
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">
+                    {{field.label}}
+                    {% if field.field.required %}<span class="text-danger">*</span>{% endif %}
+                </label>
+                {{field}}
+            </div>
+
+            {% endfor %}
+
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="{% url 'employee:list_employee' %}" class="btn btn-secondary">Regresar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

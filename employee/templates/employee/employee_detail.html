@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block sidebar %}
+{% include 'sidebar.html' %}
+{% endblock %}
+
+
+{% block content %}
+<div class="card me-5 ms-5 mt-3 mb-3">
+    <div class="card-header d-flex ">
+        <h5 class="card-title ms-2">Requerimientos</h5>
+    </div>
+    <div class="card-body">
+        <p>Esta seguro que desea eliminar el registro de <strong>{{ object.lastname }} {{ object.name }}</strong>?</p>
+        <form method="post" action="{% url 'employee:delete_employee' object.id %}">
+            {% csrf_token %}
+            <button class="btn btn-danger" type="submit">Eliminar</button>
+            <a href="{% url 'employee:list_employee' %}" class="btn btn-secondary">Regresar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'base.html' %} 
+
+{% block sidebar %} 
+{% include 'sidebar.html' %} 
+{% endblock %} 
+
+{% block content %}
+<div class="m-3">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <a href="{% url 'employee:new_holidays' %}" class="btn btn-primary"><i class="fa fa-plus-circle"></i>
+                Agregar Vacaciones</a>
+                <form method="GET" action="{% url 'employee:list_holidays' %}">
+                    <div class="input-group">
+                        <input type="text" class="form-control m-0" placeholder="Buscar por CI o apellido" name="search">
+                        <button class="btn btn-outline-primary btn-sm" type="submit"><i class="fa fa-search"></i></button>
+                    </div>
+                </form>
+        </div>
+
+        <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <thead class="bg-dark">
+                    <tr class="text-center text-light">
+                        <th scope="col">Empleado</th>
+                        <th scope="col">CI</th>
+                        <th scope="col">Cargo</th>
+                        <th scope="col">Ultima fecha de vacaciones anterior</th>
+                        <th scope="col">Fecha a oficio</th>
+                        <th scope="col">Fecha de Inicio</th>
+                        <th scope="col">Fecha de Fin</th>
+                        <th scope="col">Entrada al Trabajo</th>
+                        <th scope="col">Días de Vacaciones Solicitadas</th>
+                        <th scope="col">Días contabilizados por permisos</th>
+                        <th scope="col">Días de Vacaciones Totales</th>
+                        <th scope="col">Días pendientes de Vacaciones</th>
+                        <th scope="col">Periodo</th>
+                        <th scope="col" class="text-center">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for holidays in holidays %}
+                    <tr class="text-center">
+                        <td>{{holidays.employee.name}} {{holidays.employee.lastname}}</td>
+                        <td>{{holidays.employee.identification}}</td>
+                        <td>{{holidays.position}}</td>
+                        <td>{{holidays.date_last_holidays}}</td>
+                        <td>{{holidays.date_job}}</td>
+                        <td>{{holidays.date_start}}</td>
+                        <td>{{holidays.date_end}}</td>
+                        <td>{{holidays.entry_work}}</td>
+                        <td>{{holidays.days}}</td>
+                        <td>{{holidays.days_penalty}}</td>
+                        <td>{{holidays.days_take}}</td>
+                        <td>{{holidays.days_pending}}</td>
+                        <td>{{holidays.period}}</td>
+                        
+                        <td class="d-flex justify-content-center flex-column">
+                            <!-- <div class="mb-1">
+                                <a class="btn btn-primary" href="{% url 'employee:update_holidays' holidays.id %}">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                            </div> -->
+                            <div class="mb-1">
+                                <a class="btn btn-danger" href="{% url 'employee:detail_holidays' holidays.id %}"><i
+                                        class="fa fa-trash" aria-hidden="true"></i></a>
+                            </div>
+                            <div>
+                                <a class="btn btn-success" href="{% url 'employee:report_holidays' holidays.id %}"><i
+                                        class="fa fa-print" aria-hidden="true"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% include 'paginator.html' %}
+    </div>
+
+</div>
+{% endblock %}
