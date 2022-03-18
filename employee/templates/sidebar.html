@@ -4,50 +4,72 @@
   </a>
   <!-- nav-link active" aria-current="page" -->
   <hr>
-  <ul class="nav nav-pills flex-column mb-auto">
-    <li>
-      <a href="{% url 'employee:list_requirements' %}" class="nav-link text-white btn-outline-primary">
+  <ul id="items" class="nav nav-pills flex-column mb-auto">
+    <li class="nav-item">
+      <a id="requerimientos" href="{% url 'employee:list_requirements' %}" onclick="handleItemActive('requerimientos')" class="nav-link text-white btn-outline-primary">
         Solicitud de Permisos
       </a>
     </li>
-    <li>
-      <a href="{% url 'employee:list_holidays' %}" class="nav-link text-white btn-outline-primary">
+    <li class="nav-item">
+      <a id="vacaciones" href="{% url 'employee:list_holidays' %}" onclick="handleItemActive('vacaciones')" class="nav-link text-white btn-outline-primary">
         Solicitud de Vacaciones
       </a>
     </li>
-    <li>
-      <a href="{% url 'employee:list_penalty' %}" class="nav-link text-white btn-outline-primary">
+    <li class="nav-item">
+      <a id="horas" href="{% url 'employee:list_penalty' %}" onclick="handleItemActive('horas')"class="nav-link text-white btn-outline-primary">
         Horas contabilizadas
       </a>
     </li>
     <li class="nav-item">
-      <a href="{% url 'employee:list_employee' %}" class="nav-link text-white btn-outline-primary">
+      <a id="empleados" href="{% url 'employee:list_employee' %}" onclick="handleItemActive('empleados')" class="nav-link text-white btn-outline-primary">
         Registro de Empleados
       </a>
     </li>
-    <li>
-      <a href="{% url 'employee:list_jefatura' %}" class="nav-link text-white btn-outline-primary">
+    <li class="nav-item">
+      <a id="cargos" href="{% url 'employee:list_jefatura' %}" onclick="handleItemActive('cargos')" class="nav-link text-white btn-outline-primary">
         Registro de Cargo/Jefatura
       </a>
     </li>
-    <li>
-      <a href="{% url 'employee:list_reason' %}" class="nav-link text-white btn-outline-primary">
+    <li class="nav-item">
+      <a id="motivos" href="{% url 'employee:list_reason' %}" onclick="handleItemActive('motivos')" class="nav-link text-white btn-outline-primary">
         Registro de Motivos
       </a>
     </li>
-    <li>
-      <a href="{% url 'employee:list_report_penalty' %}" class="nav-link text-white btn-outline-primary">
+    <li class="nav-item">
+      <a id="reporte_horas" href="{% url 'employee:list_report_penalty' %}" class="nav-link text-white btn-outline-primary">
         Reportes de Horas Contabilizadas
       </a>
     </li>
-    <li>
-      <a href="{% url 'employee:list_report_permisos' %}" class="nav-link text-white btn-outline-primary">
+    <li class="nav-item">
+      <a id="reporte_permisos" href="{% url 'employee:list_report_permisos' %}" class="nav-link text-white btn-outline-primary">
         Reportes de Permisos
       </a>
     </li>
   </ul>
   <hr>
-  <div>
-    <a class="btn btn-danger w-100" href="{% url 'employee:logout' %}">Cerrar Sesion</a>
+  
+
+  <div  div class="btn-group">
+    <div class="btn-group dropup" role="group">
+      <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+        <span class="visually-hidden">Toggle Dropstart</span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="{% url 'employee:change_password' %}" >Cambiar contraseña</a></li>
+      </ul>
+    </div>
+    <a class="btn btn-danger w-100" href="{% url 'employee:logout' %}">Cerrar Sesión</a>
   </div>
 </div>
+<script>
+  const itemActive = localStorage.getItem('itemActive')
+  if(itemActive){
+    console.log('item',itemActive)
+    const el = document.getElementById(itemActive)
+    el.className = "nav-link text-white btn-outline-primary active"
+  }
+  const handleItemActive = (id) => {
+    localStorage.setItem('itemActive', `${id}`)
+  }
+
+</script>
