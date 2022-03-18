@@ -9,6 +9,7 @@ urlpatterns =[
     #Login
     path('', Login.as_view(), name="login"),
     path('logout/', auth_views.LogoutView.as_view(template_name='logout/logout.html'), name='logout'),
+    path('change_password/', ChangePassword.as_view(), name="change_password"),
     #Employee
     path('employee/', login_required(EmployeeGenericView.as_view()), name="list_employee"),
     path('employee/new', login_required(EmployeeCreateView.as_view()), name="new_employee"),

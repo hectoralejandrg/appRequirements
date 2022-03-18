@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, SetPasswordForm
 from employee.models import Employee, Holidays, Jefatura, Penalty, Requirements, Reason
 from datetime import date, datetime
 
@@ -20,6 +20,11 @@ class LoginForm(AuthenticationForm):
                                                                  'name': 'password',
                                                                  }))
     remember_me = forms.BooleanField(required=False)
+
+class PasswordChangeForm(SetPasswordForm):
+    class Meta:
+        model = User
+        fields = '__all__'
 
 
 class EmployeeForm(forms.ModelForm):

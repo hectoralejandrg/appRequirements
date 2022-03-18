@@ -1,7 +1,7 @@
 from django.views.generic import ListView, CreateView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView
-from employee.forms import EmployeeForm, HolidayForm, JefaturaForm, LoginForm, PenaltyForm, RequirementForm, ReasonForm
-from django.contrib.auth.views import LoginView
+from employee.forms import EmployeeForm, HolidayForm, JefaturaForm, LoginForm, PasswordChangeForm, PenaltyForm, RequirementForm, ReasonForm
+from django.contrib.auth.views import LoginView, PasswordChangeView
 from employee.models import Employee, Jefatura, Penalty, Reason, Requirements, Holidays
 from django.db.models import Sum, Q
 from django.http import HttpResponseRedirect
@@ -12,6 +12,12 @@ import datetime
 class Login(LoginView):
     template_name= 'login/login_form.html'
     form_class= LoginForm
+
+class ChangePassword(PasswordChangeView):
+    template_name= 'login/change_password.html'
+    form_class= PasswordChangeForm
+    success_url = '/employee/'
+
 
 #Employe CRUD
 class EmployeeGenericView(ListView):
